@@ -17,5 +17,7 @@ public class GameManager : MonoBehaviour
     {
         pointer = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
         imagePointer.transform.position = new Vector2(pointer.x, pointer.y);
+
     }
+
 }
