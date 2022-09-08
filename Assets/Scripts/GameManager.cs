@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private Vector3 pointer;
-    public GameObject imagePointer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static GameManager Instance;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        pointer = transform.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
-        imagePointer.transform.position = new Vector2(pointer.x, pointer.y);
+        // Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+        //Check if instance already exists
+        if (Instance == null)
+            //if not, set instance to this
+            Instance = this;
 
     }
 
