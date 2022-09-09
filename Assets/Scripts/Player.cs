@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     float v;
     Vector3 moveDirection;
     [SerializeField] public float speed = 5.0f;
-   
+
 
     // Update is called once per frame
     void Update()
