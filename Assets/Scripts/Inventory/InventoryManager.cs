@@ -33,7 +33,7 @@ public class InventoryManager : MonoBehaviour
         // stack items 
         foreach (Item i in items)
         {
-            if (i.name == item.name)
+            if (i.name_id == item.name_id)
             {
                 i.resourceGater += item.resourceGater;
                 // Debug.Log(item.name + " resourceGater +1");

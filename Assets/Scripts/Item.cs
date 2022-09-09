@@ -4,7 +4,7 @@ public class Item : MonoBehaviour
 {
     public int resourceGater = 1;
     [SerializeField] public bool pickable;
-
+    public string name_id;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
