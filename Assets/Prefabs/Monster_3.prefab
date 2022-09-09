@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4878791322625940210}
   - component: {fileID: 8439420758351723715}
   - component: {fileID: 6485854923271929369}
+  - component: {fileID: -3321907400502874585}
   m_Layer: 0
   m_Name: Monster_3
   m_TagString: Untagged
@@ -94,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3746035112932499790}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -106,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &6485854923271929369
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -123,3 +124,16 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0040996075, y: -0.03382106}
   m_Size: {x: 0.1683178, y: 0.26875594}
   m_Direction: 0
+--- !u!114 &-3321907400502874585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3746035112932499790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7c2139270cce64092f117f0f4af61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0

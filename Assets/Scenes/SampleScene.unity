@@ -5485,6 +5485,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1319557550036152257, guid: 3dfe5ae260259bd4a843c0aaefd916c8, type: 3}
   m_PrefabInstance: {fileID: 1478330458523282530}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1047748238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3746035112932499790, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
+  m_PrefabInstance: {fileID: 5408800120286503521}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1047748239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047748238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7c2139270cce64092f117f0f4af61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
 --- !u!4 &1049198731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1645278917524317878, guid: 0fa47e64abea5a744aa0bfd4721d9585, type: 3}
@@ -7074,14 +7092,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1890864361
 BoxCollider2D:
@@ -7681,6 +7699,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Owlet_Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 7086113960465940559, guid: d76597c5d138fc34b89d3958e5cef2ae, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086113960465940559, guid: d76597c5d138fc34b89d3958e5cef2ae, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7413773673081696066, guid: d76597c5d138fc34b89d3958e5cef2ae, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -7734,6 +7760,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9095497998713580354, guid: 89ea358ac5a4f294a93ab80633f756db, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9095497998713580354, guid: 89ea358ac5a4f294a93ab80633f756db, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8756491385116524458, guid: 89ea358ac5a4f294a93ab80633f756db, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -7903,6 +7937,26 @@ PrefabInstance:
     - target: {fileID: 6322110517672907646, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439420758351723715, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439420758351723715, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439420758351723715, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439420758351723715, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439420758351723715, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
