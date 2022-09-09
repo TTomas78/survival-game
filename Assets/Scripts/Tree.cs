@@ -26,12 +26,13 @@ public class Tree : MonoBehaviour
             }
         }
     }
-
+    
     IEnumerator SpawnWoodRoutine()
     {
         {
             yield return new WaitForSeconds(0.1f);
-            Vector2 randomPosition = Random.insideUnitCircle * spawnRadius;
+            Vector2 randomPosition = (Vector2)transform.position + Random.insideUnitCircle * spawnRadius;
+            Debug.Log(randomPosition);
             Instantiate(woodPrefab, randomPosition, Quaternion.identity);
             health--;
         }
