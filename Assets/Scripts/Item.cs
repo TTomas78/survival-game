@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -12,9 +13,7 @@ public class Item : MonoBehaviour
         {
             // add item to inventory
             InventoryManager.instance.Add(this);
-
-            // pooling item
-            gameObject.SetActive(false);
+            StartCoroutine(handleItemDisappear());
             // Debug.Log("Item picked up");
         }
     }
@@ -23,5 +22,15 @@ public class Item : MonoBehaviour
     {
         InventoryManager.instance.Remove(this);
     }
+
+
+    IEnumerator handleItemDisappear()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameObject.SetActive(false);
+    }
+
+
+
 
 }

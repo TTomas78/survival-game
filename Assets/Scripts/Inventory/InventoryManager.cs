@@ -30,17 +30,19 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Not enough room.");
             return false;
         }
+        
         // stack items 
         foreach (Item i in items)
         {
             if (i.name_id == item.name_id)
             {
                 i.resourceGater += item.resourceGater;
-                // Debug.Log(item.name + " resourceGater +1");
                 Destroy(item.gameObject);
+
                 // Trigger callback
                 if (onItemChangedCallback != null)
                     onItemChangedCallback.Invoke();
+
                 return true;
             }
         }
@@ -51,7 +53,6 @@ public class InventoryManager : MonoBehaviour
         if (onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
 
-        // Debug.Log(item.name + " was added.");
         return true;
     }
 

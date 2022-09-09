@@ -5,14 +5,20 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
-    float h;
-    float v;
-    Vector3 moveDirection;
     [SerializeField] public float speed = 5.0f;
 
 
     // Update is called once per frame
     void Update()
+    {
+        handleKeyboardMovement();
+        handleMouseMovement();
+    }
+    
+    float h;
+    float v;
+    Vector3 moveDirection;
+    private void handleKeyboardMovement()
     {
         // get keyboard imput
         h = Input.GetAxis("Horizontal");
@@ -23,7 +29,26 @@ public class Player : MonoBehaviour
 
         // move the player
         transform.position += moveDirection * speed * Time.deltaTime;
+    }
 
-
+    bool moving;
+    Vector2 lastClickedPos;
+    private void handleMouseMovement()
+    {
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            lastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            moving = true;
+        }
+        if (moving && (Vector2)transform.position != lastClickedPos)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, lastClickedPos, step);
+        }
+        else
+        {
+            moving = false;
+        }
     }
 }
