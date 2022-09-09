@@ -1,36 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    float h;
+    float v;
+    Vector3 moveDirection;
+    [SerializeField] public float speed = 5.0f;
+   
 
     // Update is called once per frame
     void Update()
     {
-        // player controls 
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * 5);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * Time.deltaTime * 5);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * 5);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * 5);
-        }
-        
+        // get keyboard imput
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        // set direction
+        moveDirection = new Vector3(h, v, 0);
+
+        // move the player
+        transform.position += moveDirection * speed * Time.deltaTime;
+
 
     }
 }
