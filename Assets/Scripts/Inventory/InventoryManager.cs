@@ -60,7 +60,26 @@ public class InventoryManager : MonoBehaviour
     {
         items.Remove(item);
 
-        // Trigger callback
+        // get the player position
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+        // for iterate with resourcegater
+        for (int i = 0; i < item.resourceGater; i++)
+        {
+            // position offset 
+            Vector3 offset = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+            // clone without memory refence & spawn the item
+            Item clone = Instantiate(item, playerPos + offset, Quaternion.identity);
+            // reset item props
+            clone.resourceGater = 1;
+            clone.gameObject.SetActive(true);
+            clone.name = item.name_id;
+        }
+
+        // destroy gameObject reference
+        Destroy(item.gameObject);
+
+        // Trigger callback to the UI
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }
