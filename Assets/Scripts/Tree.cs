@@ -6,7 +6,18 @@ public class Tree : MonoBehaviour
 {
     [SerializeField] GameObject woodPrefab;
     [SerializeField] float spawnRadius = 2;
+    
     [SerializeField] int health = 5;
+    [SerializeField] int maxHealth = 5;
+    [SerializeField] int woodAmount = 3;
+
+    public HealthBar healthBar;
+
+    private void Start()
+    {
+        healthBar.SetMaxHealth(maxHealth);
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,6 +36,8 @@ public class Tree : MonoBehaviour
                     Destroy(gameObject);
             }
         }
+
+  
     }
     
     IEnumerator SpawnWoodRoutine()
@@ -35,6 +48,7 @@ public class Tree : MonoBehaviour
             Debug.Log(randomPosition);
             Instantiate(woodPrefab, randomPosition, Quaternion.identity);
             health--;
+            healthBar.SetHealth(health);
         }
     }
 }
