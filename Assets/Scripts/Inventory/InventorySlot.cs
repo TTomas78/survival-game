@@ -7,18 +7,24 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public Button removeButton;
     public TMP_Text countText;
+    public int index;
 
-    public Item item;
+    public Item item;  // Current item in the slot
+
     public void AddItem(Item newItem)
     {
-        item = newItem;
+        item = newItem; // Set our item
+
+
+        item.positionInInventory = transform.GetSiblingIndex(); ; // set the position in the inventory
+ 
         Debug.Log("Added item: " + item);
         SpriteRenderer sr = item.gameObject.GetComponent<SpriteRenderer>();
-        icon.sprite = sr.sprite;
-        icon.enabled = true;
-        removeButton.interactable = true;
-        countText.text = item.resourceGater.ToString();
-        countText.enabled = true;
+        icon.sprite = sr.sprite; // Change the icon
+        icon.enabled = true; // Enable the icon
+        removeButton.interactable = true; // Enable the button
+        countText.text = item.resourceGater.ToString(); // Set the count
+        countText.enabled = true; // Enable the text
     }
 
     public void ClearSlot()
@@ -38,17 +44,16 @@ public class InventorySlot : MonoBehaviour
     }
 
     // swap slots content
-    public void SwapSlot(InventorySlot slot)
+    public void SwapSlot(InventorySlot targetSlot)
     {
         Item temp = item;
-        if(slot.item == null )
-        {
+
+        if (targetSlot.item == null)
             ClearSlot();
-        } else
-        {
-            AddItem(slot.item);   
-        }
-        slot.AddItem(temp);
+        else
+            AddItem(targetSlot.item);
+
+        targetSlot.AddItem(temp);
     }
 
 }

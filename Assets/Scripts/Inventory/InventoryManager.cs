@@ -89,10 +89,7 @@ public class InventoryManager : MonoBehaviour
     {
         // swap items
         if (initialSlot.item != null)
-        {
             initialSlot.SwapSlot(targetSlot);
-           
-        }
     }
 
 }

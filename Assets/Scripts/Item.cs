@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
     public int resourceGater = 1;
     [SerializeField] public bool pickable;
     public string name_id;
+    public int positionInInventory = -1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,14 +24,9 @@ public class Item : MonoBehaviour
         InventoryManager.instance.Remove(this);
     }
 
-
     IEnumerator handleItemDisappear()
     {
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
     }
-
-
-
-
 }

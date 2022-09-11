@@ -1,3 +1,4 @@
+using System.Globalization;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -18,29 +19,63 @@ public class InventoryUI : MonoBehaviour
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // Update the inventory UI by:
     //		- Adding items
     //		- Clearing empty slots
     // This is called using a delegate on the Inventory.
     void UpdateUI()
     {
-        // Loop through all the slots
-        for (int i = 0; i < slots.Length; i++)
+        Debug.Log("Updating Inventory UI");
+        foreach (Item item in inventory.items)
         {
-            if (i < inventory.items.Count)  // If there is an item to add
+            // search for the item in the inventory
+            bool found = false;
+            foreach (InventorySlot slot in slots)
             {
-                slots[i].AddItem(inventory.items[i]);   // Add it
+                if(slot.item != null && slot.item.name_id == item.name_id)
+                {
+                    Debug.Log("slot.item.name_id: " + slot.item.name_id);
+                    Debug.Log("item.name_id: " + item.name_id);
+                    slots[item.positionInInventory].AddItem(item);
+                    found = true;
+                    Debug.Log("Found");
+
+                }
             }
-            else
+            // if the item is not found in the inventory, add it
+            if (!found)
             {
-                // Otherwise clear the slot
-                slots[i].ClearSlot();
+                foreach (InventorySlot slot in slots)
+                {
+                    if (slot.item == null)
+                    {
+                        slot.AddItem(item);
+                        Debug.Log("not Found but added");
+                        break;
+                    }
+                }
+            }
+            
+        }
+        // find slot.item in inventory.items
+        // if not found, clear slot
+        foreach (InventorySlot slot in slots)
+        {
+            if(slot.item != null)
+            {
+                bool found = false;
+                foreach (Item item in inventory.items)
+                {
+                    if (item.name_id == slot.item.name_id)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    slot.ClearSlot();
+                }
             }
         }
     }
