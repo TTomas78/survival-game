@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3882888689621930830}
   - component: {fileID: 1232782979}
   - component: {fileID: 1232782977}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RockGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,9 +434,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3882888689621930830}
     m_Modifications:
+    - target: {fileID: 1593631721868372204, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1593631723058122506, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
       propertyPath: m_Name
       value: HealthBar Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593631723058122506, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1593631723058122507, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
       propertyPath: m_Pivot.x
@@ -521,6 +529,18 @@ PrefabInstance:
     - target: {fileID: 1593631723058122507, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593631723089842782, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593631723238252335, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593631723605098921, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1593631723605098922, guid: 7c49b23f631462e4681d4c151f730dfb, type: 3}
       propertyPath: m_AnchorMax.x
