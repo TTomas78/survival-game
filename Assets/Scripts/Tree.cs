@@ -36,8 +36,16 @@ public class Tree : MonoBehaviour
                     Destroy(gameObject);
             }
         }
+        if (health == maxHealth)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+        else
+        {
+            healthBar.gameObject.SetActive(true);
+        }
 
-  
+
     }
     
     IEnumerator SpawnWoodRoutine()
