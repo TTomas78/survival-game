@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (6)
@@ -227,6 +231,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (5)
@@ -324,6 +332,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (8)
@@ -421,6 +433,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (3)
@@ -8670,6 +8686,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (2)
@@ -9090,6 +9110,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
+    - target: {fileID: 1210290900, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
+    - target: {fileID: 1210290901, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (1)
@@ -9178,7 +9210,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 202585543, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+    - {fileID: 1210290900, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
 --- !u!1001 &1015639322
 PrefabInstance:
@@ -9244,6 +9278,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (4)
@@ -9673,6 +9711,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot (7)
@@ -9971,6 +10013,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!1 &1978016335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+  m_PrefabInstance: {fileID: 882220528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1978016338
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978016335}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2001517234
 GameObject:
   m_ObjectHideFlags: 0
@@ -10206,6 +10265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 486215811}
     m_Modifications:
+    - target: {fileID: 617453674, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1326269340}
     - target: {fileID: 1443665696329214220, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}
       propertyPath: m_Name
       value: InventorySlot

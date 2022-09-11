@@ -25,17 +25,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810468594}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1443665696329214221}
-  m_RootOrder: 2
+  m_Father: {fileID: 1443665695551674505}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.48998, y: -30}
+  m_AnchoredPosition: {x: -0.000010222197, y: -30}
   m_SizeDelta: {x: 69.02, y: 33.9896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1810468597
@@ -419,7 +419,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1810468595}
   m_Father: {fileID: 1443665695199264052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -476,6 +477,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1443665696329214221}
   - component: {fileID: 9206374253108751386}
+  - component: {fileID: 617453673}
+  - component: {fileID: 617453674}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -497,7 +500,6 @@ RectTransform:
   m_Children:
   - {fileID: 1443665695199264052}
   - {fileID: 1443665695116939205}
-  - {fileID: 1810468595}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -521,3 +523,30 @@ MonoBehaviour:
   icon: {fileID: 1443665695551674510}
   removeButton: {fileID: 1443665695116939226}
   countText: {fileID: 1810468596}
+  item: {fileID: 0}
+--- !u!225 &617453673
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443665696329214220}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &617453674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443665696329214220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d79b9e0ad17f24eb35bf1197d811fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  slot: {fileID: 9206374253108751386}

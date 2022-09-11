@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour
     public Button removeButton;
     public TMP_Text countText;
 
-    Item item;
+    public Item item;
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -36,4 +36,19 @@ public class InventorySlot : MonoBehaviour
     {
         InventoryManager.instance.Remove(item);
     }
+
+    // swap slots content
+    public void SwapSlot(InventorySlot slot)
+    {
+        Item temp = item;
+        if(slot.item == null )
+        {
+            ClearSlot();
+        } else
+        {
+            AddItem(slot.item);   
+        }
+        slot.AddItem(temp);
+    }
+
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -83,4 +84,15 @@ public class InventoryManager : MonoBehaviour
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }
+
+    public void SwapItems(InventorySlot initialSlot, InventorySlot targetSlot)
+    {
+        // swap items
+        if (initialSlot.item != null)
+        {
+            initialSlot.SwapSlot(targetSlot);
+           
+        }
+    }
+
 }
