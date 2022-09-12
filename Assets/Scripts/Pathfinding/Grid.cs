@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
+    public Transform player;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadious;
@@ -33,21 +34,55 @@ public class Grid : MonoBehaviour
                 Vector3 WorldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadious) + Vector3.up * (y * nodeDiameter + nodeRadious);
                 Vector2 box = new Vector2(nodeRadious, nodeRadious);
                 bool walkable = !(Physics2D.OverlapBox(WorldPoint, box, 90,unwalkableMask));
-                //bool walkable = !(Physics2d.CheckSphere(WorldPoint, nodeRadious, unwalkableMask));
                 grid[x, y] = new Node(walkable, WorldPoint);
             }
         }
     }
 
+    public Node NodeFromWorldPoint(Vector3 worldPosition)
+    {
+        float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
+        float percentY = (worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
+
+        Debug.Log("worldpositionx");
+        Debug.Log(worldPosition.x);
+
+        Debug.Log("gridworld size");
+        Debug.Log(gridWorldSize.x);
+
+        Debug.Log("porcentaje");
+        Debug.Log(percentX);
+
+        percentX = Mathf.Clamp01(percentX);
+        percentY = Mathf.Clamp01(percentY);
+
+        Debug.Log("clamp");
+        Debug.Log(percentX);
+
+        int x = Mathf.RoundToInt((gridSizeX-1)*percentX);
+        int y = Mathf.RoundToInt((gridSizeY-1)*percentY);
+        Debug.Log("gridsize");
+        Debug.Log(gridSizeX);
+
+        Debug.Log("nodo");
+        Debug.Log(x);
+
+        return grid[x, y];
+    }
     void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y));
 
         if (grid != null)
         {
+            Node playerNode = NodeFromWorldPoint(player.position);
             foreach (Node node in grid)
             {
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
+                if (playerNode == node)
+                {
+                    Gizmos.color = Color.cyan;
+                }
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
         }
