@@ -30,6 +30,11 @@ public class ItemListUI : MonoBehaviour
            // iterate slots and add items
             foreach (ItemListSlot slot in slots)
             {
+                if (slot.item != null && slot.item.name_id == item.name_id)
+                {
+                    slot.AddItem(item);
+                    break;
+                }
                 if (slot.item == null)
                 {
                     slot.AddItem(item);
