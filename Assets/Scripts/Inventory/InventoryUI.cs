@@ -73,9 +73,7 @@ public class InventoryUI : MonoBehaviour
                     }
                 }
                 if (!found)
-                {
                     slot.ClearSlot();
-                }
             }
         }
     }
