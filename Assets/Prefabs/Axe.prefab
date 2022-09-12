@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7011659301393953975}
   - component: {fileID: 7011659301393953974}
   - component: {fileID: 1613336656979416529}
+  - component: {fileID: 7265469736261728121}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7011659301393953973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.778, y: 0.435, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -81216610, guid: 443689ba2092ada4290ae0d8c2407104, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,5 +98,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32baf6a1592979247944e2bd44359a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot: 0
   resourceGater: 10
+  pickable: 1
+  name_id: Axe
+  positionInInventory: 0
+--- !u!60 &7265469736261728121
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011659301393953973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.13, y: 0.16}
+    newSize: {x: 0.13, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.035, y: 0.08}
+      - {x: -0.07404345, y: -0.020434506}
+      - {x: -0.065, y: -0.08}
+      - {x: -0.005, y: -0.08}
+      - {x: 0.065, y: -0.03}
+      - {x: 0.065, y: 0.08}

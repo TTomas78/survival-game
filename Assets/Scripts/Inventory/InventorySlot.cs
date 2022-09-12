@@ -7,8 +7,6 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public Button removeButton;
     public TMP_Text countText;
-    public int index;
-
     public Item item;  // Current item in the slot
 
     public void AddItem(Item newItem)
