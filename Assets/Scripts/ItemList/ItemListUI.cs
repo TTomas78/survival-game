@@ -15,9 +15,10 @@ public class ItemListUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("ItemListUI Start");
         slots = itemsParent.GetComponentsInChildren<ItemListSlot>();
         itemList = ItemListManager.instance;
-        itemList.onItemChangedCallback += UpdateUI;
+        itemList.onItemAddedCallback += UpdateUI;
     }
 
     // Update is called once per frame

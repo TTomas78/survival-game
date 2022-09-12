@@ -21,8 +21,8 @@ public class ItemListManager : MonoBehaviour
 
     // Callback which is triggered when
     // an item gets added/removed.
-    public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback;
+    public delegate void OnItemAdded();
+    public OnItemAdded onItemAddedCallback;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +32,8 @@ public class ItemListManager : MonoBehaviour
             items.Add(item.GetComponent<Item>());
         }
         // Trigger callback
-        if (onItemChangedCallback != null)
-            onItemChangedCallback.Invoke();
+        if (onItemAddedCallback != null)
+            onItemAddedCallback.Invoke();
         
     }
 
@@ -49,6 +49,9 @@ public class ItemListManager : MonoBehaviour
                 return;
             }
             ItemListUI.SetActive(true);
+            // Trigger callback
+            if (onItemAddedCallback != null)
+                onItemAddedCallback.Invoke();
           
             
         }
