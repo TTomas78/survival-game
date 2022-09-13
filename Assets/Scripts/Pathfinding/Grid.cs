@@ -14,6 +14,8 @@ public class Grid : MonoBehaviour
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
+    public List<Node> path;
+
     void Start()
     {
         nodeDiameter = nodeRadious * 2;
@@ -34,9 +36,31 @@ public class Grid : MonoBehaviour
                 Vector3 WorldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadious) + Vector3.up * (y * nodeDiameter + nodeRadious);
                 Vector2 box = new Vector2(nodeRadious, nodeRadious);
                 bool walkable = !(Physics2D.OverlapBox(WorldPoint, box, 90,unwalkableMask));
-                grid[x, y] = new Node(walkable, WorldPoint);
+                grid[x, y] = new Node(walkable, WorldPoint, x, y);
             }
         }
+    }
+
+    public List<Node> GetNeighbours(Node node)
+    {
+        List<Node> neighbours = new List<Node>();
+        for(int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if(x == 0 && y == 0){
+                    continue;
+                }
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    neighbours.Add(grid[checkX, checkY]);
+                }
+            }
+        }
+        return neighbours;
     }
 
     public Node NodeFromWorldPoint(Vector3 worldPosition)
@@ -44,28 +68,12 @@ public class Grid : MonoBehaviour
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPosition.y + gridWorldSize.y / 2) / gridWorldSize.y;
 
-        Debug.Log("worldpositionx");
-        Debug.Log(worldPosition.x);
-
-        Debug.Log("gridworld size");
-        Debug.Log(gridWorldSize.x);
-
-        Debug.Log("porcentaje");
-        Debug.Log(percentX);
-
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
 
-        Debug.Log("clamp");
-        Debug.Log(percentX);
 
         int x = Mathf.RoundToInt((gridSizeX-1)*percentX);
         int y = Mathf.RoundToInt((gridSizeY-1)*percentY);
-        Debug.Log("gridsize");
-        Debug.Log(gridSizeX);
-
-        Debug.Log("nodo");
-        Debug.Log(x);
 
         return grid[x, y];
     }
@@ -82,6 +90,13 @@ public class Grid : MonoBehaviour
                 if (playerNode == node)
                 {
                     Gizmos.color = Color.cyan;
+                }
+                if (path != null)
+                {
+                    if (path.Contains(node))
+                    {
+                        Gizmos.color = Color.black;
+                    }
                 }
                 Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
