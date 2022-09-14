@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 playerPosition = gameObject.transform.position;
+            Vector3 playerPosition = transform.position;
 
             pathfinding.FindPath(playerPosition, targetPosition);
 
@@ -59,9 +59,14 @@ public class Player : MonoBehaviour
         if (path.Count != 0)
         {
             Node nextStep = path[0];
-            Vector2 nextPosition = new Vector2(nextStep.gridX, nextStep.gridY);
-            transform.position = Vector2.MoveTowards(transform.position, nextPosition, 1);
-            path.Remove(nextStep);
+            Debug.Log(nextStep.worldPosition);
+            Vector2 nextPosition = new Vector2(nextStep.worldPosition.x, nextStep.worldPosition.y);
+            // move the player to the next position
+            transform.position = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
+            if ((Vector2)transform.position == nextPosition)
+            {
+                path.Remove(nextStep);
+            }
         }
     }
 }
