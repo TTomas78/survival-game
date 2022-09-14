@@ -10471,11 +10471,6 @@ PrefabInstance:
       objectReference: {fileID: 1319336010}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d32760a3130687241b030a1f62d64ae2, type: 3}
---- !u!4 &802547955 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2557297370871075267, guid: c3f8672e20b0fed47a98d821009aa30b, type: 3}
-  m_PrefabInstance: {fileID: 1015639322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &805844598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7593331294053695900, guid: d32760a3130687241b030a1f62d64ae2, type: 3}
@@ -10747,6 +10742,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &867566436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867566440}
+  - component: {fileID: 867566439}
+  - component: {fileID: 867566438}
+  - component: {fileID: 867566437}
+  m_Layer: 0
+  m_Name: Movement Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &867566437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867566436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97ec086cfe9f3d499390ea0709e7a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &867566438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867566436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e6c4d11daa0554fae8c4f7d232f2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1890864359}
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 256
+  gridWorldSize: {x: 32, y: 10}
+  nodeRadious: 0.5
+--- !u!156049354 &867566439
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867566436}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0.1, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
+--- !u!4 &867566440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867566436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.33593002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &875792974 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7593331294053695900, guid: d32760a3130687241b030a1f62d64ae2, type: 3}
@@ -14361,7 +14432,6 @@ GameObject:
   - component: {fileID: 1890864360}
   - component: {fileID: 1890864361}
   - component: {fileID: 1890864362}
-  - component: {fileID: 1890864363}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -14382,6 +14452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  grid: {fileID: 867566439}
 --- !u!212 &1890864358
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14504,20 +14575,6 @@ MonoBehaviour:
     m_Bits: 256
   gridWorldSize: {x: 30, y: 10}
   nodeRadious: 0.5
---- !u!114 &1890864363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890864356}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f97ec086cfe9f3d499390ea0709e7a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seeker: {fileID: 1890864359}
-  target: {fileID: 802547955}
 --- !u!224 &1903657022 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7593331294053695900, guid: d32760a3130687241b030a1f62d64ae2, type: 3}

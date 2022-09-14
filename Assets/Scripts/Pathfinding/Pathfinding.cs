@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.ExceptionServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -8,7 +9,6 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 
 {
-    public Transform seeker, target;
     Grid grid;
 
     private void Awake()
@@ -16,12 +16,7 @@ public class Pathfinding : MonoBehaviour
         grid = GetComponent<Grid>();
     }
 
-    private void Update()
-    {
-        FindPath(seeker.position, target.position);
-    }
-
-    void FindPath(Vector3 startPos, Vector3 targetPos)
+    public void FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
@@ -98,4 +93,5 @@ public class Pathfinding : MonoBehaviour
         }
         return 14*distanceX + 10* (distanceY-distanceX);
     }
+
 }
