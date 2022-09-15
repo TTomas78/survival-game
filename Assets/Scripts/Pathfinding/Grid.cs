@@ -42,6 +42,12 @@ public class Grid : MonoBehaviour
         }
     }
 
+    // update grid every frame
+    void Update()
+    {
+        CreateGrid();
+    }
+
     public List<Node> GetNeighbours(Node node)
     {
         List<Node> neighbours = new List<Node>();
