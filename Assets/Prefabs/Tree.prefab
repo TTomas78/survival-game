@@ -48,11 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b29bec1eb126b44b61cd06444a7356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodPrefab: {fileID: 8566535500939891845, guid: c3f8672e20b0fed47a98d821009aa30b, type: 3}
+  resourceData: {fileID: 11400000, guid: 16603e933329ff940a6d5dd18b970a1a, type: 2}
   spawnRadius: 2
-  health: 5
-  maxHealth: 5
-  woodAmount: 3
   healthBar: {fileID: 2346442401639440854}
 --- !u!50 &1000065013
 Rigidbody2D:
