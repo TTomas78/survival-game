@@ -10,12 +10,11 @@ public class ActionsManager : MonoBehaviour
     [SerializeField] InventoryManager inventory;
     public void DispatchAction(Resource resource)
     {
-        //changed required action for the resource required action
         if (!SearchItem(resource.RequiredAction))
         {
             Debug.Log("not possible to perform the accion due to an ausence of items");
         }
-        //now we should check if there are any usable item if(usableItem != null)
+        //now we should check if there are any usable item if(usableItem != null), the lines above doesn't restrict anything
 
         //if the player get's the item -> -1 is now hardcoded but could depend on the weapon stat
         resource.SetHealth(resource.Health - 1);
