@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -7,6 +8,7 @@ public class Item : MonoBehaviour
     [SerializeField] public bool pickable;
     public string name_id;
     public int positionInInventory = -1;
+    public List<Enums.PossibleActions> actions;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
