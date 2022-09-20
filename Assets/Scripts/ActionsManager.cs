@@ -5,9 +5,27 @@ using UnityEditor.Search;
 using UnityEngine;
 
 public class ActionsManager : MonoBehaviour
-    //must be a singleton
 {
-    [SerializeField] InventoryManager inventory;
+
+    InventoryManager inventory;
+    public static ActionsManager instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Inventory found!");
+            return;
+        }
+        instance = this;
+
+    }
+
+    void Start()
+    {
+        inventory = InventoryManager.instance;
+    }
+
     public void DispatchAction(Resource resource)
     {
         if (!SearchItem(resource.RequiredAction))
