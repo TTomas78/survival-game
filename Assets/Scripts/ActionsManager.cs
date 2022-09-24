@@ -10,7 +10,7 @@ public class ActionsManager : MonoBehaviour
     [SerializeField] InventoryManager inventory;
     public void DispatchAction(Resource resource)
     {
-        if (!SearchItem(resource.RequiredAction))
+        if (SearchItem(resource.RequiredAction).Count == 0)
         {
             Debug.Log("not possible to perform the accion due to an ausence of items");
         }
@@ -27,16 +27,12 @@ public class ActionsManager : MonoBehaviour
 
     }
     //search an item to perform an specific actionm now it returns a boolean but probably should return the item in the future
-    private bool SearchItem(Enums.PossibleActions requiredAction)
+    private List<Item> SearchItem(Enums.PossibleActions requiredAction)
     {
         //from now on it will return the first item, but while we implemented new stats on the items, we should select the most optimal
         List<Item> possibleItems = inventory.items.Where(item => item.actions.Contains(requiredAction)).ToList();
 
-        if(possibleItems.Count != 0)
-        {
-            return true;
-        }
-        return false;
+        return possibleItems;
     }
 
     IEnumerator SpawnRewardItems(GameObject rewardPrefab,Vector3 position,float spawnRadius)
