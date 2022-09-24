@@ -20052,6 +20052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   grid: {fileID: 867566439}
+  playerData: {fileID: 11400000, guid: 5b3c44b8279440347b0de156afe50a2c, type: 2}
 --- !u!212 &1890864358
 SpriteRenderer:
   m_ObjectHideFlags: 0
