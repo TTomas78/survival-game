@@ -8,7 +8,9 @@ public class Item : MonoBehaviour
     [SerializeField] public bool pickable;
     public string name_id;
     public int positionInInventory = -1;
+    //TODO delete this
     public List<Enums.PossibleActions> actions;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,4 +33,5 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
     }
+
 }
