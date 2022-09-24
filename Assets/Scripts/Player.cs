@@ -73,4 +73,17 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    // update day stats 
+    public void UpdateDayStats()
+    {
+        // set hanguer
+        playerData.UseHunger(1);
+        // set thirst
+        playerData.UseThirst(1);
+        // heal player
+        playerData.Heal(1);
+        // reset energy
+        playerData.ResetEnergy();
+    }
 }
