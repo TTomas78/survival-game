@@ -11,7 +11,11 @@ public class Player : MonoBehaviour
     public Grid grid;
     List<Node> path;
     Pathfinding pathfinding;
-    private void Awake()
+    
+    public PlayerData playerData;
+
+
+    void Start()
     {
         pathfinding = grid.GetComponent<Pathfinding>();
     }
