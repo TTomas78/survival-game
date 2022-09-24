@@ -28,28 +28,47 @@ public class ActionsManager : MonoBehaviour
 
     public void DispatchAction(Resource resource)
     {
-        if (SearchItem(resource.RequiredAction).Count == 0)
+        Tool selectedTool = SearchTool(resource.RequiredAction);
+        if (selectedTool == null)
         {
-            Debug.Log("not possible to perform the accion due to an ausence of items");
+            return;
         }
 
-        //if the player get's the item -> -1 is now hardcoded but could depend on the weapon stat
-        resource.SetHealth(resource.Health - 1);
+        resource.SetHealth(resource.Health - selectedTool.Damage);
 
-        //Space to decrease the item duration if we'd like that
 
+        selectedTool.decreaseDurability(1);
 
         //start item corrutine
         StartCoroutine(SpawnRewardItems(resource.RewardPrefab, resource.transform.position, resource.SpawnRewardRadius));
 
     }
     //search an item to perform an specific actionm now it returns a boolean but probably should return the item in the future
-    private List<Item> SearchItem(Enums.PossibleActions requiredAction)
+    private Tool SearchTool(Enums.PossibleActions requiredAction)
     {
         //from now on it will return the first item, but while we implemented new stats on the items, we should select the most optimal
-        List<Item> possibleItems = inventory.items.Where(item => item.actions.Contains(requiredAction)).ToList();
+        List<Tool> possibleItems = new List<Tool>();
 
-        return possibleItems;
+        foreach(Item item in inventory.items)
+        {
+            if (item is Tool)
+            {
+                possibleItems.Add((Tool)item);
+            }
+        };
+        possibleItems = possibleItems.Where(item => item.actions.Contains(requiredAction)).ToList();
+
+        Tool selectedTool = null;
+
+        foreach (Tool tool in possibleItems)
+        {
+            if ((selectedTool == null && tool.Durability > 0) || (selectedTool != null &&  tool.positionInInventory < selectedTool.positionInInventory && tool.Durability > 0))
+            {
+                selectedTool = tool;
+            }
+        };
+        
+        return selectedTool;
     }
 
     IEnumerator SpawnRewardItems(GameObject rewardPrefab,Vector3 position,float spawnRadius)

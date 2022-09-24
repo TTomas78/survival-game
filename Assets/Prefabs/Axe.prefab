@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7011659301393953975}
   - component: {fileID: 7011659301393953974}
-  - component: {fileID: 1613336656979416529}
   - component: {fileID: 7265469736261728121}
+  - component: {fileID: 5185853464388193233}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -86,22 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1613336656979416529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7011659301393953973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32baf6a1592979247944e2bd44359a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceGater: 10
-  pickable: 1
-  name_id: Axe
-  positionInInventory: 0
 --- !u!60 &7265469736261728121
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -133,3 +117,21 @@ PolygonCollider2D:
       - {x: -0.005, y: -0.08}
       - {x: 0.065, y: -0.03}
       - {x: 0.065, y: 0.08}
+--- !u!114 &5185853464388193233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011659301393953973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1854daf8bf0d3664b9db5227c08ed19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceGater: 1
+  pickable: 1
+  name_id: Axe
+  positionInInventory: 0
+  actions: 00000000
+  data: {fileID: 11400000, guid: 228025e2a75d73e459df61bf125e2f96, type: 2}
