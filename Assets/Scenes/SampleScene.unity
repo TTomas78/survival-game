@@ -9825,6 +9825,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235c7fb12933c4d4a8f998d7d1cde247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayLength: 10
+  dayProgress: 0
+  day: 1
+  isDay: 1
+  isNight: 0
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13409,6 +13414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235c7fb12933c4d4a8f998d7d1cde247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayLength: 10
+  dayProgress: 0
+  day: 1
+  isDay: 1
+  isNight: 0
 --- !u!4 &1200246269
 Transform:
   m_ObjectHideFlags: 0
