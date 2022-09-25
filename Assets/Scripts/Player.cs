@@ -1,9 +1,6 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -11,8 +8,33 @@ public class Player : MonoBehaviour
     public Grid grid;
     List<Node> path;
     Pathfinding pathfinding;
-    
-    public PlayerData playerData;
+    PlayerStats _playerStats;
+
+    private int Health
+    {
+        get => _playerStats.health;
+        set => _playerStats.UpdateHealth(value);
+    }
+    private int Hunger
+    {
+        get => _playerStats.hunger;
+        set => _playerStats.UpdateHunger(value);
+    }
+    private int Thirst
+    {
+        get => _playerStats.thirst;
+        set => _playerStats.UpdateThirst(value);
+    }
+    private int Energy
+    {
+        get => _playerStats.energy;
+        set => _playerStats.UpdateEnergy(value);
+    }
+
+    private void Awake()
+    {
+        _playerStats = PlayerStats.instance;
+    }
 
 
     void Start()
@@ -74,16 +96,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    // update day stats 
+    // update player stats
     public void UpdateDayStats()
     {
-        // set hanguer
-        playerData.UseHunger(1);
-        // set thirst
-        playerData.UseThirst(1);
-        // heal player
-        playerData.Heal(1);
-        // reset energy
-        playerData.ResetEnergy();
+        // update player stats
+        Health += 1;
+        Hunger -= 1;
+        Thirst -= 1;
+        Energy -= 1;
     }
 }
