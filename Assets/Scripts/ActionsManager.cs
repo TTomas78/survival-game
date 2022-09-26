@@ -9,6 +9,7 @@ public class ActionsManager : MonoBehaviour
 
     InventoryManager inventory;
     public static ActionsManager instance;
+    Player player;
 
     void Awake()
     {
@@ -24,6 +25,7 @@ public class ActionsManager : MonoBehaviour
     void Start()
     {
         inventory = InventoryManager.instance;
+        player = FindObjectOfType<Player>();
     }
 
     public void DispatchAction(Resource resource)
@@ -76,5 +78,10 @@ public class ActionsManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         GameObject item = Instantiate(rewardPrefab, position + new Vector3(Random.Range(-spawnRadius, spawnRadius), Random.Range(-spawnRadius, spawnRadius), 0), Quaternion.identity);
         item.GetComponent<Item>().name_id = rewardPrefab.name;
+    }
+
+    public void UseConsumible(Consumible consumible)
+    {
+        //TODO implement this
     }
 }

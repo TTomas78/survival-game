@@ -5,12 +5,18 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public int resourceGater = 1;
+    protected ActionsManager actionsManager;
     [SerializeField] public bool pickable;
     public string name_id;
     public int positionInInventory = -1;
     //TODO delete this
     public List<Enums.PossibleActions> actions;
 
+    void Awake()
+    {
+        actionsManager = FindObjectOfType<ActionsManager>();
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,6 +38,11 @@ public class Item : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
+    }
+
+    public void use()
+    {
+       
     }
 
 }

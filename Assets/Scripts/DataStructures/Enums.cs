@@ -9,6 +9,7 @@ public class Enums : MonoBehaviour
     {
         chop,
         mine,
-        harvest
+        harvest,
+        fish
     }
 }

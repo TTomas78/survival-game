@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Resource", menuName = "Item/Tool")]
+[CreateAssetMenu(fileName = "New Tool", menuName = "Item/Tool")]
 
 
 public class ToolData : ScriptableObject
