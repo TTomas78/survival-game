@@ -17,41 +17,23 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // day/night cycle
-    public float dayLength = 10.0f;
-    public float dayProgress = 0.0f;
-    public int day = 1;
-    public bool isDay = true;
-    public bool isNight = false;
+    DayProgress _dayProgress;
+    Player _Player;
 
-    // player
-    Player player;
-
-    // start 
-    void Start()
+    private void Start()
     {
-        player = FindObjectOfType<Player>();
+        _dayProgress = DayProgress.instance;
+        _dayProgress.OnDayChanged += UpdateDay;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateDay(int day)
     {
-        // day/night cycle
-        dayProgress += Time.deltaTime / dayLength;
-        if (dayProgress >= 1.0f)
-        {
-            Debug.Log(dayProgress);
-            dayProgress = 0.0f;
-            isDay = !isDay;
-            isNight = !isNight;
-            day++;
-            
-            Debug.Log(player);
-            // update player stats
-            player.UpdateDayStats();
-        }
-
-
+        _Player = GameObject.Find("Player").GetComponent<Player>();
+        _Player.UpdateDayStats();
     }
+
+
+
+
 
 }
