@@ -17,4 +17,23 @@ public class GameManager : MonoBehaviour
 
     }
 
+    DayProgress _dayProgress;
+    Player _Player;
+
+    private void Start()
+    {
+        _dayProgress = DayProgress.instance;
+        _dayProgress.OnDayChanged += UpdateDay;
+    }
+
+    private void UpdateDay(int day)
+    {
+        _Player = GameObject.Find("Player").GetComponent<Player>();
+        _Player.UpdateDayStats();
+    }
+
+
+
+
+
 }

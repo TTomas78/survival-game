@@ -7,13 +7,7 @@ public class ResourceData : ScriptableObject
     [SerializeField] int rewardAmount;
     [SerializeField] GameObject rewardPrefab;
     [SerializeField] float spawnRewardRadius;
-    [SerializeField] RequiredAction requiredAction;
-    enum RequiredAction
-    {
-        chop,
-        mine,
-        harvest
-    }
+    [SerializeField] Enums.PossibleActions requiredAction;
 
 
 
@@ -22,5 +16,5 @@ public class ResourceData : ScriptableObject
     public GameObject RewardPrefab { get => rewardPrefab; set => rewardPrefab = value; }
     public float SpawnRewardRadius { get => spawnRewardRadius; set => spawnRewardRadius = value; }
 
-
+    public Enums.PossibleActions RequiredAction { get => requiredAction;}
 }
