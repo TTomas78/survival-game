@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1659963123}
   m_Layer: 0
   m_Name: Pickaxe
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   pickable: 1
   name_id: Pickaxe
   positionInInventory: -1
+  actions: 
 --- !u!60 &1659963123
 PolygonCollider2D:
   m_ObjectHideFlags: 0

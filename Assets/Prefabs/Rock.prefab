@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 136634351957008486}
   m_Layer: 8
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +139,5 @@ MonoBehaviour:
   resourceGater: 1
   pickable: 1
   name_id: Rock
+  positionInInventory: -1
+  actions: 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7235809436792307325}
   m_Layer: 0
   m_Name: Wood
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,3 +117,5 @@ MonoBehaviour:
   resourceGater: 1
   pickable: 1
   name_id: Wood
+  positionInInventory: -1
+  actions: 
