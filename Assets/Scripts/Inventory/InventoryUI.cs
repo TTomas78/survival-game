@@ -25,7 +25,7 @@ public class InventoryUI : MonoBehaviour
     // This is called using a delegate on the Inventory.
     void UpdateUI()
     {
-        Debug.Log("Updating Inventory UI");
+        // Debug.Log("Updating Inventory UI");
         foreach (Item item in inventory.items)
         {
             // search for the item in the inventory
@@ -34,11 +34,11 @@ public class InventoryUI : MonoBehaviour
             {
                 if(slot.item != null && slot.item.name_id == item.name_id)
                 {
-                    Debug.Log("slot.item.name_id: " + slot.item.name_id);
-                    Debug.Log("item.name_id: " + item.name_id);
+                    // Debug.Log("slot.item.name_id: " + slot.item.name_id);
+                    // Debug.Log("item.name_id: " + item.name_id);
                     slots[item.positionInInventory].AddItem(item);
                     found = true;
-                    Debug.Log("Found");
+                    // Debug.Log("Found");
 
                 }
             }
@@ -50,7 +50,7 @@ public class InventoryUI : MonoBehaviour
                     if (slot.item == null)
                     {
                         slot.AddItem(item);
-                        Debug.Log("not Found but added");
+                        // Debug.Log("not Found but added");
                         break;
                     }
                 }

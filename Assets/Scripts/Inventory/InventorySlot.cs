@@ -16,7 +16,7 @@ public class InventorySlot : MonoBehaviour
 
         item.positionInInventory = transform.GetSiblingIndex(); ; // set the position in the inventory
  
-        Debug.Log("Added item: " + item);
+        // Debug.Log("Added item: " + item);
         SpriteRenderer sr = item.gameObject.GetComponent<SpriteRenderer>();
         icon.sprite = sr.sprite; // Change the icon
         icon.enabled = true; // Enable the icon

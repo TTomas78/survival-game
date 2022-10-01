@@ -1,10 +1,13 @@
 
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+
 
 public class Player : MonoBehaviour
 {
     [SerializeField] public float speed = 5.0f;
+    [SerializeField] public float pickUpDistance = 0.5f;
     public Grid grid;
     List<Node> path;
     Pathfinding pathfinding;
@@ -40,6 +43,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         pathfinding = grid.GetComponent<Pathfinding>();
+        StartCoroutine(hitCollidersDetection());
+
     }
 
     // Update is called once per frame
@@ -48,6 +53,8 @@ public class Player : MonoBehaviour
         handleKeyboardMovement();
         handleMouseMovement();
         MovePlayer();
+
+
     }
     
     float h;
@@ -146,4 +153,36 @@ public class Player : MonoBehaviour
         Thirst -= 1;
         Energy -= 1;
     }
+
+    // hitColliders detection
+    IEnumerator hitCollidersDetection()
+    {
+        while (true)
+        {
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, pickUpDistance);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.gameObject.tag == "Item")
+                {
+                    Item item = hitCollider.gameObject.GetComponent<Item>();
+                    if (item.pickable)
+                    {
+                        // Debug.Log("Item in range");
+                        item.PickUp();
+                    }
+                }
+            }
+            // Debug.Log("hitCollidersDetection");
+            yield return new WaitForSeconds(0.1f);
+        }
+
+    }
+
+    // draw circle around player
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, pickUpDistance);
+    }
+    
 }

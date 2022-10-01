@@ -18,17 +18,6 @@ public class Item : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player" && pickable)
-        {
-            // add item to inventory
-            InventoryManager.instance.Add(this);
-            StartCoroutine(handleItemDisappear());
-            // Debug.Log("Item picked up");
-        }
-    }
-
     public void RemoveFromInventory()
     {
         InventoryManager.instance.Remove(this);
@@ -38,6 +27,28 @@ public class Item : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
+    }
+    IEnumerator addToInventory()
+    {
+        yield return new WaitForSeconds(0.1f);
+        InventoryManager.instance.Add(this);
+    }
+
+    public IEnumerator MoveTowardsPlayer(GameObject player)
+    {
+        while (Vector3.Distance(transform.position, player.transform.position) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 5f * Time.deltaTime);
+            yield return null;
+        }
+       
+    }
+    
+    public void PickUp()
+    {
+        StartCoroutine(MoveTowardsPlayer(GameObject.FindGameObjectWithTag("Player")));
+        StartCoroutine(addToInventory());
+        StartCoroutine(handleItemDisappear());
     }
 
     public void use()
