@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
         handleKeyboardMovement();
         handleMouseMovement();
         MovePlayer();
-
     }
     
     float h;
@@ -56,15 +55,37 @@ public class Player : MonoBehaviour
     Vector3 moveDirection;
     private void handleKeyboardMovement()
     {
-        // get keyboard imput
+        // get keyboard input
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
 
         // set direction
         moveDirection = new Vector3(h, v, 0);
 
-        // move the player
-        transform.position += moveDirection * speed * Time.deltaTime;
+        if (h != 0 || v != 0)
+        {
+            // activate walking anitation
+            gameObject.GetComponent<Animator>().SetBool("isMoving", true);
+
+            // set sprite direction
+            if (h > 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (h < 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
+
+            // move the player
+            transform.position += moveDirection * speed * Time.deltaTime;
+        } else 
+        {
+            gameObject.GetComponent<Animator>().SetBool("isMoving", false);
+        }
+
+
     }
 
     private void handleMouseMovement()
@@ -84,14 +105,34 @@ public class Player : MonoBehaviour
         path = grid.gameObject.GetComponent<Grid>().path;
         if (path.Count != 0)
         {
+            // start moving animation
+            gameObject.GetComponent<Animator>().SetBool("isMoving", true); 
+            // flip sprite
+            if (path[0].worldPosition.x > transform.position.x)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (path[0].worldPosition.x < transform.position.x)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
             Node nextStep = path[0];
             Debug.Log(nextStep.worldPosition);
             Vector2 nextPosition = new Vector2(nextStep.worldPosition.x, nextStep.worldPosition.y);
             // move the player to the next position
             transform.position = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
+
+            // if the player is at the next position, remove it from the path
             if ((Vector2)transform.position == nextPosition)
             {
                 path.Remove(nextStep);
+            }
+
+            // if the player is at the target position, stop moving
+            if (path.Count == 0)
+            {
+                gameObject.GetComponent<Animator>().SetBool("isMoving", false);
             }
         }
     }
