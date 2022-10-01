@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceData: {fileID: 11400000, guid: 16603e933329ff940a6d5dd18b970a1a, type: 2}
-  spawnRadius: 2
   healthBar: {fileID: 2346442401639440854}
 --- !u!50 &1000065013
 Rigidbody2D:
@@ -85,8 +84,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00038719177, y: -0.003271103}
-  m_Size: {x: 1.0199189, y: 2.6592407}
+  m_Offset: {x: 0.00038719177, y: -0.7737401}
+  m_Size: {x: 1.0199189, y: 1.1183027}
   m_Direction: 0
 --- !u!1 &4600075292269095093
 GameObject:
