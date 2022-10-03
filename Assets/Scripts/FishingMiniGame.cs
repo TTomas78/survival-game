@@ -34,6 +34,21 @@ public class FishingMiniGame : MonoBehaviour
     [SerializeField] float pregressBarDecay = .1f; // How fast the progress bar decays
     float catchPregress;
 
+    [Header("Fishing area settings")]
+    [SerializeField] Transform fishingArea; 
+    [SerializeField] Transform playerPosition; 
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        fishPosition = Random.Range(bottomBounds.position.y, topBounds.position.y);
+        fishTargetPosition = Random.Range(bottomBounds.position.y, topBounds.position.y);
+        fishTimer = Random.Range(0f, fishTimeRandomizer);
+        fishSpeed = Random.Range(0f, 1f);
+        hookPosition = bottomBounds.position.y;
+        catchPregress = 0f;
+    }
 
     private void MoveFish() {
         fishTimer += Time.deltaTime;
