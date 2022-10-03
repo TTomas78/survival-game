@@ -22,7 +22,7 @@ public class FishingMiniGame : MonoBehaviour
 
     [Header("Hook Settings")]
     [SerializeField] Transform hook;
-    [SerializeField] float hookSize = .18f; // How big the hook is
+    [SerializeField] float hookSize = .2f; // How big the hook is
     [SerializeField] float hookSpeed = .1f; // How fast the hook moves
     [SerializeField] float hookGravity = .05f; // How fast the hook falls
     float hookPosition;
@@ -41,8 +41,10 @@ public class FishingMiniGame : MonoBehaviour
             // Reset the timer
             fishTimer = 0f;
             // Randomize the target position
-            fishTargetPosition = Random.Range(bottomBounds.position.y, topBounds.position.y);
-            // fishTargetPosition = Mathf.Clamp(fishTargetPosition, fishSize / 2, 1 - fishSize / 2);
+            fishTargetPosition = Random.Range(
+                bottomBounds.position.y + fishSize / 2,
+                topBounds.position.y - fishSize / 2
+            );
         }
         // Move the fish towards the target position
         fishPosition = Mathf.Lerp(fishPosition, fishTargetPosition, smoothMotion * Time.deltaTime);
@@ -81,7 +83,7 @@ public class FishingMiniGame : MonoBehaviour
         catchPregress = Mathf.Clamp(catchPregress, 0, 1);
         // Set the progress bar's value
         progressBar.value = catchPregress;
-        Debug.Log(catchPregress);
+
         if(catchPregress >= 1) {
             // We caught the fish
             Debug.Log("Caught the fish!");
