@@ -103,16 +103,20 @@ public class FishingMiniGame : MonoBehaviour
             // We caught the fish
             Debug.Log("Caught the fish!");
         }
+    
+        // draw a line between the fish and the hook
+        Debug.DrawLine(fish.position, hook.position, Color.red);
 
-        float _distance = Mathf.Abs(fish.position.y - hook.position.y);
-        if(_distance <= fishSize / 2 + hookSize / 2) {
+        float _distance = Mathf.Abs(fish.position.y - hook.position.y );
+        float _sumEdges = fishSize + hookSize;
+        if(_distance <= _sumEdges) {
             // We are close enough to catch the fish
             catchPregress += hookPower * Time.deltaTime;
         } else {
             // We are not close enough to catch the fish
             catchPregress -= pregressBarDecay * Time.deltaTime;
         }
-       
+        
     }
     
 
