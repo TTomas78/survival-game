@@ -15,7 +15,7 @@ public class ActionsManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More than one instance of Inventory found!");
+            Debug.LogWarning("More than one instance of Action manager found!");
             return;
         }
         instance = this;
