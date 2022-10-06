@@ -6,6 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;   // The parent object of all the items
     public GameObject inventoryUI;  // The entire UI
+    public CraftingUI craftingUI;
 
     InventoryManager inventory;    // Our current inventory
 
@@ -14,7 +15,11 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         inventory = InventoryManager.instance;
+
+        craftingUI = FindObjectOfType<CraftingUI>();
+
         inventory.onItemChangedCallback += UpdateUI;
+
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }

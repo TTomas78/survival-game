@@ -7,7 +7,7 @@ public class RecipeData : ScriptableObject
 {
     [SerializeField] List<Item> recipeComponents;
     [SerializeField] List<int> recipeComponentsQuantity;
-    [SerializeField] GameObject resultPrefab;
+    [SerializeField] Item resultPrefab;
     [SerializeField] List<RecipeData> requisites;
 
     public List<Item> RecipeComponents { get => recipeComponents; }
@@ -16,6 +16,6 @@ public class RecipeData : ScriptableObject
 
     public List<RecipeData> Requisites { get => requisites; }
 
-    public GameObject ResultPrefab { get => resultPrefab; }
+    public Item ResultPrefab { get => resultPrefab; }
 }
 
