@@ -13,6 +13,7 @@ public class ItemListSlot : MonoBehaviour
         item = newItem;
 
         SpriteRenderer sr = item.gameObject.GetComponent<SpriteRenderer>();
+        Debug.Log(sr.sprite);
         icon.sprite = sr.sprite;
         icon.enabled = true; // Enable the icon
     }

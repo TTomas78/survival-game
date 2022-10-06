@@ -78,7 +78,7 @@ public class CraftingManager : MonoBehaviour
     }
 
     //Craft an item and substract the resources from the inventory
-    public GameObject CraftItem(RecipeData recipe)
+    public Item CraftItem(RecipeData recipe)
     {
         if (IsAbleToCraft(recipe))
         {
