@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32baf6a1592979247944e2bd44359a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceGater: 10
+  resourceGater: 1
   pickable: 1
   name_id: Pickaxe
-  positionInInventory: -1
+  positionInInventory: 1
   actions: 
 --- !u!60 &1659963123
 PolygonCollider2D:

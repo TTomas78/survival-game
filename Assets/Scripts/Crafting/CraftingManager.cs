@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -78,17 +79,26 @@ public class CraftingManager : MonoBehaviour
     }
 
     //Craft an item and substract the resources from the inventory
-    public Item CraftItem(RecipeData recipe)
+    public void CraftItem(RecipeData recipe)
     {
         if (IsAbleToCraft(recipe))
         {
             for (int i = 0; i < recipe.RecipeComponents.Count; i++)
             {
-                int index = inventory.items.IndexOf(recipe.RecipeComponents[i]);
 
+                string objectName = recipe.RecipeComponents[i].name_id;
+                int index = -1;
+                for (int j = 0; j < inventory.items.Count; j++)
+                {
+                    if (inventory.items[j].name_id == objectName)
+                    {
+                        index = j;
+                    }
+                }
                 inventory.items[index].resourceGater = inventory.items[index].resourceGater - recipe.RecipeComponentsQuantity[i];
                 if (inventory.items[index].resourceGater == 0)
                     inventory.items[index].RemoveFromInventory();
+                inventory.Add(recipe.ResultPrefab);
             }
         }
         else
@@ -100,7 +110,6 @@ public class CraftingManager : MonoBehaviour
             CraftedRecipes.Add(recipe);
             UnlockRecipes();
         }
-        return recipe.ResultPrefab;
     }
 
     // Return true if a recipe is able to be crafted
@@ -108,7 +117,15 @@ public class CraftingManager : MonoBehaviour
     {
         for(int i = 0; i < recipe.RecipeComponents.Count; i++)
         {
-            int index = inventory.items.IndexOf(recipe.RecipeComponents[i]);
+            string objectName = recipe.RecipeComponents[i].name_id;
+            int index = -1;
+            for (int j = 0; j < inventory.items.Count; j++)
+            {
+                if (inventory.items[j].name_id == objectName)
+                {
+                    index = j;
+                }
+            }
             if (index != -1)
             {
                 if (recipe.RecipeComponentsQuantity[i] > inventory.items[index].resourceGater)

@@ -133,7 +133,7 @@ MonoBehaviour:
   resourceGater: 1
   pickable: 1
   name_id: Axe
-  positionInInventory: 0
+  positionInInventory: 1
   actions: 00000000
   data: {fileID: 11400000, guid: 228025e2a75d73e459df61bf125e2f96, type: 2}
 --- !u!50 &-8245288302203790971

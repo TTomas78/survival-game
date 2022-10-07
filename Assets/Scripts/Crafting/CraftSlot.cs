@@ -9,6 +9,7 @@ public class CraftSlot : MonoBehaviour
 {
     public Image icon;
     RecipeData recipe;
+    CraftingUI craftingUI;
 
     public void AddCraft(RecipeData newRecipe)
     {
@@ -19,13 +20,17 @@ public class CraftSlot : MonoBehaviour
         icon.enabled = true;
     }
 
-    //maybe this method shouldn't be neccesary
-    public void CleanSlot()
+    public void ConfigureUI(CraftingUI UI)
     {
-        recipe = null;
-        icon.sprite = null;
-        icon.enabled=false;
+        craftingUI = UI;
     }
+
+
+    public void OnCraftButton()
+    {
+        craftingUI.CraftItem(recipe);
+    }
+
 
 
 }
