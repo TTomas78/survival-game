@@ -19,6 +19,7 @@ public class InventoryUI : MonoBehaviour
         craftingUI = FindObjectOfType<CraftingUI>();
 
         inventory.onItemChangedCallback += UpdateUI;
+        inventory.onItemChangedCallback += craftingUI.UpdateUI;
 
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
@@ -30,8 +31,6 @@ public class InventoryUI : MonoBehaviour
     // This is called using a delegate on the Inventory.
     void UpdateUI()
     {
-         Debug.Log("Updating Inventory UI");
-        Debug.Log(inventory.items.Count);
         foreach (Item item in inventory.items)
         {
             // search for the item in the inventory
