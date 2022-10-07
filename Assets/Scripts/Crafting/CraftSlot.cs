@@ -10,7 +10,7 @@ public class CraftSlot : MonoBehaviour
     public Image icon;
     RecipeData recipe;
 
-    public CraftSlot(RecipeData newRecipe)
+    public void AddCraft(RecipeData newRecipe)
     {
         recipe = newRecipe;
         SpriteRenderer sr = recipe.ResultPrefab.gameObject.GetComponent<SpriteRenderer>();

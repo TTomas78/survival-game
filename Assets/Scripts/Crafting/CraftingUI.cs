@@ -9,24 +9,12 @@ public class CraftingUI : MonoBehaviour
     CraftingManager craftingManager;
     public Transform slotParent;
 
-    CraftSlot[] slots;
+    [SerializeField] CraftSlot slotPrefab;
 
-    CraftingUI instance;
-
-    void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogWarning("More than one instance of the craftingUI found!");
-            return;
-        }
-        instance = this;
-    }
     // Start is called before the first frame update
     void Start()
     {
         craftingManager = CraftingManager.instance;
-        slots = slotParent.GetComponentsInChildren<CraftSlot>();
     }
 
     // Update is called once per frame
@@ -43,7 +31,6 @@ public class CraftingUI : MonoBehaviour
     {
         createSlots(craftingManager.AvailableRecipes());
         createSlots(craftingManager.UnavailableRecipes());
-        Debug.Log(slots.Length);
 
     }
 
@@ -51,10 +38,8 @@ public class CraftingUI : MonoBehaviour
     {
         for (int i = 0; i < recipeList.Count; i++)
         {
-            Debug.Log("entro aca");
-            CraftSlot newCraft = new CraftSlot(recipeList[i]);
-            newCraft.transform.parent = slotParent;
-            slots.Append(newCraft);
+            CraftSlot slot = Instantiate(slotPrefab, slotParent);
+            slot.AddCraft(recipeList[i]);
         }
     }
 }
