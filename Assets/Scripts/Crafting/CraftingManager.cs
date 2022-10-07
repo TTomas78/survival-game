@@ -98,8 +98,8 @@ public class CraftingManager : MonoBehaviour
                 inventory.items[index].resourceGater = inventory.items[index].resourceGater - recipe.RecipeComponentsQuantity[i];
                 if (inventory.items[index].resourceGater == 0)
                     inventory.items[index].RemoveFromInventory();
-                inventory.Add(recipe.ResultPrefab);
             }
+                inventory.Add(recipe.ResultPrefab);
         }
         else
         {

@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
