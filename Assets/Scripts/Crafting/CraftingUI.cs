@@ -19,6 +19,7 @@ public class CraftingUI : MonoBehaviour
     void Start()
     {
         craftingManager = CraftingManager.instance;
+        craftingManager.onRecipeChangedCallback += UpdateUI;
     }
 
     // Update is called once per frame
@@ -33,12 +34,12 @@ public class CraftingUI : MonoBehaviour
     //we should update the ui once the method of the crafting manager is dispatched. also it should be updated once the inventory is open
     public void UpdateUI()
     {
-        destroySlots();
-        createSlots(craftingManager.AvailableRecipes(),true);
-        createSlots(craftingManager.UnavailableRecipes(), false);
+        DestroySlots();
+        CreateSlots(craftingManager.AvailableRecipes(),true);
+        CreateSlots(craftingManager.UnavailableRecipes(), false);
     }
 
-    private void createSlots(List<RecipeData> recipeList, bool available)
+    private void CreateSlots(List<RecipeData> recipeList, bool available)
     {
         byte multiplier = 120;
         if (available)
@@ -46,10 +47,11 @@ public class CraftingUI : MonoBehaviour
         for (int i = 0; i < recipeList.Count; i++)
         {
             CraftSlot slot = Instantiate(slotPrefab, slotParent);
-            slot.GetComponent<Image>().color = new Color32(255, 255, 255, multiplier);
-            slot.GetComponent<Button>().interactable = available; 
-            slot.AddCraft(recipeList[i]);
             slot.ConfigureUI(this);
+            slot.AddCraft(recipeList[i]);
+
+            slot.GetComponent<Image>().color = new Color32(255, 255, 255, multiplier);
+            slot.GetComponent<Button>().interactable = available;
         }
     }
 
@@ -58,11 +60,11 @@ public class CraftingUI : MonoBehaviour
         craftingManager.CraftItem(recipe);
     }
 
-    private void destroySlots()
+    private void DestroySlots()
     {
-        foreach (CraftSlot slot in slotParent.GetComponentsInChildren<CraftSlot>())
+        foreach (Transform child in slotParent)
         {
-            DestroyImmediate(slot.gameObject);
+            Destroy(child.gameObject);
         }
     }
 

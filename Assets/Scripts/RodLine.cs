@@ -24,7 +24,7 @@ public class RodLine : MonoBehaviour
     IEnumerator DrawLine() {
         // draw a line from the player to the fishing area
         while (true) {
-            Debug.Log("Drawing line");
+            // Debug.Log("Drawing line");
             for (float i = 0; i < 1; i += 0.01f) {
                 Vector3 start = rodPosition.position;
                 Vector3 end = fishingArea.position;

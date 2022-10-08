@@ -15,7 +15,7 @@ public class CraftSlot : MonoBehaviour
     {
         recipe = newRecipe;
         SpriteRenderer sr = recipe.ResultPrefab.gameObject.GetComponent<SpriteRenderer>();
-        Debug.Log(sr.sprite);
+//        Debug.Log(sr.sprite);
         icon.sprite = sr.sprite;
         icon.enabled = true;
     }

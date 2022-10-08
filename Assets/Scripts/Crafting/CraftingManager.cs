@@ -1,9 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
@@ -12,7 +8,7 @@ public class CraftingManager : MonoBehaviour
     InventoryManager inventory;
     [SerializeField] List<RecipeData> unlockedRecipes;
     [SerializeField] List<RecipeData> lockedRecipes;
-    [SerializeField] List<RecipeData> CraftedRecipes;
+    public List<RecipeData> CraftedRecipes;
 
     void Awake()
     {
@@ -30,26 +26,21 @@ public class CraftingManager : MonoBehaviour
         inventory = InventoryManager.instance;
     }
 
+    // onRecipeChangedCallback
+    public delegate void OnRecipeChanged();
+    public OnRecipeChanged onRecipeChangedCallback;
+
     // Unlock new recipes when the requisites are completed
     public void UnlockRecipes()
     {
-        for (int i = 0; i < lockedRecipes.Count; i++)
+        foreach (RecipeData recipe in lockedRecipes)
         {
-            List<RecipeData> requisites = lockedRecipes[i].Requisites;
-            
-            for (int j = 0; j < requisites.Count; j++) {
-                if (!CraftedRecipes.Contains(requisites[j])){
-                    break;
-                }
-                else
-                {
-                    if(j == requisites.Count - 1)
-                    {
-                        unlockedRecipes.Add(lockedRecipes[i]);
-                        lockedRecipes.RemoveAt(i);
-                    }
-                }
-
+            if (recipe.IsUnlocked())
+            {
+                unlockedRecipes.Add(recipe);
+                lockedRecipes.Remove(recipe);
+                onRecipeChangedCallback.Invoke();
+                return;
             }
         }
     }
@@ -78,32 +69,25 @@ public class CraftingManager : MonoBehaviour
         return recipes;
     }
 
+
+
     //Craft an item and substract the resources from the inventory
     public void CraftItem(RecipeData recipe)
     {
         if (IsAbleToCraft(recipe))
         {
-            for (int i = 0; i < recipe.RecipeComponents.Count; i++)
+            foreach (Item item in recipe.RecipeComponents)
             {
-
-                string objectName = recipe.RecipeComponents[i].name_id;
-                int index = -1;
-                for (int j = 0; j < inventory.items.Count; j++)
+                // search for the item in the inventory
+                StackItem stackItem = inventory.SearchItemByName(item.name_id);
+                if (stackItem != null)
                 {
-                    if (inventory.items[j].name_id == objectName)
-                    {
-                        index = j;
-                    }
+                    // substract the resources from the resourceGatherer
+                    int quantity = recipe.RecipeComponentsQuantity[recipe.RecipeComponents.IndexOf(item)];
+                    inventory.SubtractItemByName(item.name_id, quantity);
                 }
-                inventory.items[index].resourceGater = inventory.items[index].resourceGater - recipe.RecipeComponentsQuantity[i];
-                if (inventory.items[index].resourceGater == 0)
-                    inventory.items[index].RemoveFromInventory();
             }
-                inventory.Add(recipe.ResultPrefab);
-        }
-        else
-        {
-            Debug.Log("something went wrong");
+            inventory.Add(recipe.ResultPrefab);
         }
         if (!CraftedRecipes.Contains(recipe))
         {
@@ -112,31 +96,21 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    // Return true if a recipe is able to be crafted
     public bool IsAbleToCraft(RecipeData recipe)
     {
-        for(int i = 0; i < recipe.RecipeComponents.Count; i++)
+        foreach (Item item in recipe.RecipeComponents)
         {
-            string objectName = recipe.RecipeComponents[i].name_id;
-            int index = -1;
-            for (int j = 0; j < inventory.items.Count; j++)
-            {
-                if (inventory.items[j].name_id == objectName)
-                {
-                    index = j;
-                }
-            }
-            if (index != -1)
-            {
-                if (recipe.RecipeComponentsQuantity[i] > inventory.items[index].resourceGater)
-                {
-                    return false;
-                }
-            }
-            else
-            {
+            // check if the item is in the inventory
+            StackItem stackItem = inventory.SearchItemByName(item.name_id);
+            if (stackItem == null)
                 return false;
-            }
+            
+            // check if the player has enough resources
+            int currentQuantity = stackItem.quantity;
+            int requiredQuantity = recipe.RecipeComponentsQuantity[recipe.RecipeComponents.IndexOf(item)];
+            if (currentQuantity < requiredQuantity)
+                return false;
+            
         }
         return true;
     }

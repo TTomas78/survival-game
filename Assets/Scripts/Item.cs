@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public int resourceGater = 1;
     protected ActionsManager actionsManager;
     [SerializeField] public bool pickable;
     public string name_id;
@@ -18,10 +17,10 @@ public class Item : MonoBehaviour
 
     }
 
-    public void RemoveFromInventory()
+   /*  public void RemoveFromInventory()
     {
         InventoryManager.instance.Remove(this);
-    }
+    } */
 
     IEnumerator handleItemDisappear()
     {
@@ -56,4 +55,32 @@ public class Item : MonoBehaviour
        
     }
 
+}
+
+/*     [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
+    public class ItemData : ScriptableObject
+    {
+        public string name_id;
+        public string description;
+        public Sprite icon;
+        public GameObject itemPrefab;
+        public List<Enums.PossibleActions> actions;
+
+        public Item CreateItem()
+        {
+            Item newItem = Instantiate(itemPrefab).GetComponent<Item>();
+            newItem.name_id = name_id;
+            newItem.itemPrefab = itemPrefab;
+            newItem.actions = actions;
+            return newItem;
+        }
+
+        
+    } */
+
+[System.Serializable]
+public class StackItem
+{
+    public Item item;
+    public int quantity;
 }

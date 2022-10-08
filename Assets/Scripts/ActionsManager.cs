@@ -51,11 +51,11 @@ public class ActionsManager : MonoBehaviour
         //from now on it will return the first item, but while we implemented new stats on the items, we should select the most optimal
         List<Tool> possibleItems = new List<Tool>();
 
-        foreach(Item item in inventory.items)
+        foreach(StackItem stackItem in inventory.items)
         {
-            if (item is Tool)
+            if (stackItem.item is Tool)
             {
-                possibleItems.Add((Tool)item);
+                possibleItems.Add((Tool)stackItem.item);
             }
         };
         possibleItems = possibleItems.Where(item => item.actions.Contains(requiredAction)).ToList();

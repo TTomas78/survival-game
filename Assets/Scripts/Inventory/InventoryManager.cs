@@ -8,8 +8,9 @@ using static UnityEditor.Progress;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    public List<Item> items = new List<Item>();
+    public List<StackItem> items = new List<StackItem>();
     public int space = 20;
+
 
     void Awake()
     {
@@ -35,22 +36,24 @@ public class InventoryManager : MonoBehaviour
         }
         
         // stack items 
-        foreach (Item i in items)
+        foreach (StackItem stackItem in items)
         {
-            if (i.name_id == item.name_id)
+            if (stackItem.item.name_id == item.name_id)
             {
-                i.resourceGater += item.resourceGater;
-                Destroy(item.gameObject);
-
-                // Trigger callback
-                if (onItemChangedCallback != null)
-                    onItemChangedCallback.Invoke();
-
+                stackItem.quantity++;
+                Destroy(item);
+                onItemChangedCallback.Invoke();
                 return true;
             }
+
         }
 
-        items.Add(item);
+        // add new item
+        StackItem newItem = new StackItem();
+        newItem.item = item;
+        newItem.quantity = 1;
+
+        items.Add(newItem);
 
         // Trigger callback
         if (onItemChangedCallback != null)
@@ -59,28 +62,30 @@ public class InventoryManager : MonoBehaviour
         return true;
     }
 
-    public void Remove(Item item)
+    public void Remove(StackItem stackItem)
     {
-        items.Remove(item);
+        items.Remove(stackItem);
 
         // get the player position
         Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-        // for iterate with resourcegater
-        for (int i = 0; i < item.resourceGater; i++)
+        // for iterate with quantity 
+        for (int i = 0; i < stackItem.quantity; i++)
         {
-            // position offset 
+            // create a new item
             Vector3 offset = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
-            // clone without memory refence & spawn the item
-            Item clone = Instantiate(item, playerPos + offset, Quaternion.identity);
-            // reset item props
-            clone.resourceGater = 1;
-            clone.gameObject.SetActive(true);
-            clone.name = item.name_id;
+
+            Item newItem = Instantiate(stackItem.item, playerPos + offset, Quaternion.identity);
+            newItem.name_id = stackItem.item.name_id;
+            newItem.name = stackItem.item.name_id;
+            newItem.positionInInventory = -1;
+
+            newItem.gameObject.SetActive(true);
+
         }
 
-        // destroy gameObject reference
-        Destroy(item.gameObject);
+
+        // Destroy(stackItem.item.gameObject);
 
         // Trigger callback to the UI
         if (onItemChangedCallback != null)
@@ -90,8 +95,50 @@ public class InventoryManager : MonoBehaviour
     public void SwapItems(InventorySlot initialSlot, InventorySlot targetSlot)
     {
         // swap items
-        if (initialSlot.item != null)
+        if (initialSlot.stackItem.item != null)
             initialSlot.SwapSlot(targetSlot);
     }
 
+    // search item by name
+    public StackItem SearchItemByName(string name)
+    {
+        foreach (StackItem i in items)
+        {
+            if (i.item.name_id == name)
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    // search item id by name
+    public int SearchItemIndexByName(string name)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].item.name_id == name)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // subtract item by name
+    public void SubtractItemByName(string name, int amount)
+    {
+        foreach (StackItem i in items)
+        {
+            if (i.item.name_id == name)
+            {
+                i.quantity -= amount;
+                if (i.quantity <= 0)
+                {
+                    Remove(i);
+                }
+                return;
+            }
+        }
+    }
 }
