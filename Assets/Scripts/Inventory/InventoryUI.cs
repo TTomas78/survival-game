@@ -6,7 +6,6 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;   // The parent object of all the items
     public GameObject inventoryUI;  // The entire UI
-    public CraftingUI craftingUI;
 
     InventoryManager inventory;    // Our current inventory
 
@@ -16,10 +15,7 @@ public class InventoryUI : MonoBehaviour
     {
         inventory = InventoryManager.instance;
 
-        craftingUI = FindObjectOfType<CraftingUI>();
-
         inventory.onItemChangedCallback += UpdateUI;
-        inventory.onItemChangedCallback += craftingUI.UpdateUI;
 
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
@@ -62,7 +58,7 @@ public class InventoryUI : MonoBehaviour
         // find empty slots and clear them
         foreach (InventorySlot slot in slots)
         {
-            if(slot.stackItem.item != null)
+            if(slot.stackItem?.item != null)
             {
                 bool found = false;
                 foreach (StackItem stackItem in inventory.items)

@@ -1,63 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
+using TMPro;
+
 
 public class CraftingUI : MonoBehaviour
 {
     CraftingManager craftingManager;
     public Transform slotParent;
-
     [SerializeField] CraftSlot slotPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         craftingManager = CraftingManager.instance;
-        craftingManager.onRecipeChangedCallback += UpdateUI;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            UpdateUI();
-        }
+        craftingManager.onRecipeChangedCallback += UpdateUI;
+        InventoryManager.instance.onItemChangedCallback += UpdateUI;
+        UpdateUI();
+
     }
 
     //we should update the ui once the method of the crafting manager is dispatched. also it should be updated once the inventory is open
     public void UpdateUI()
     {
         DestroySlots();
-        CreateSlots(craftingManager.AvailableRecipes(),true);
+        CreateSlots(craftingManager.AvailableRecipes(), true);
         CreateSlots(craftingManager.UnavailableRecipes(), false);
     }
 
     private void CreateSlots(List<RecipeData> recipeList, bool available)
     {
-        byte multiplier = 120;
-        if (available)
-            multiplier = 255;
         for (int i = 0; i < recipeList.Count; i++)
         {
             CraftSlot slot = Instantiate(slotPrefab, slotParent);
-            slot.ConfigureUI(this);
-            slot.AddCraft(recipeList[i]);
-
-            slot.GetComponent<Image>().color = new Color32(255, 255, 255, multiplier);
-            slot.GetComponent<Button>().interactable = available;
+            slot.AddCraft(recipeList[i], available);
         }
-    }
-
-    public void CraftItem(RecipeData recipe)
-    {
-        craftingManager.CraftItem(recipe);
     }
 
     private void DestroySlots()
@@ -68,5 +49,9 @@ public class CraftingUI : MonoBehaviour
         }
     }
 
+    public void OnCloseButton()
+    {
+        gameObject.SetActive(false);
+    }
 
 }

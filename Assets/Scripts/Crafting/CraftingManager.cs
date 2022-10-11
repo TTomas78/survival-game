@@ -9,6 +9,7 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] List<RecipeData> unlockedRecipes;
     [SerializeField] List<RecipeData> lockedRecipes;
     public List<RecipeData> CraftedRecipes;
+    [SerializeField] GameObject craftingUI;
 
     void Awake()
     {
@@ -24,6 +25,15 @@ public class CraftingManager : MonoBehaviour
     void Start()
     {
         inventory = InventoryManager.instance;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            craftingUI.SetActive(!craftingUI.activeSelf);
+        }
     }
 
     // onRecipeChangedCallback
