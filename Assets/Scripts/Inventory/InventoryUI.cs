@@ -33,7 +33,7 @@ public class InventoryUI : MonoBehaviour
     {
         foreach (StackItem stackItem in inventory.items)
         {
-            // search for the item in the inventory
+            // search for the item in the inventory & update its quantity
             bool found = false;
             foreach (InventorySlot slot in slots)
             {
@@ -42,11 +42,10 @@ public class InventoryUI : MonoBehaviour
                     slot.stackItem.quantity = stackItem.quantity;
                     slot.UpdateSlot();
                     found = true;
-
                     break;
                 }
             }
-            // if the item is not found in the inventory, add it
+            // if not found add it to the inventory
             if (!found)
             {
                 foreach (InventorySlot slot in slots)
@@ -54,15 +53,13 @@ public class InventoryUI : MonoBehaviour
                     if (slot.stackItem?.item == null)
                     {
                         slot.AddItem(stackItem);
-                        // Debug.Log("not Found but added");
                         break;
                     }
                 }
             }
             
         }
-        // find slot.item in inventory.items
-        // if not found, clear slot
+        // find empty slots and clear them
         foreach (InventorySlot slot in slots)
         {
             if(slot.stackItem.item != null)
