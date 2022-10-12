@@ -28,10 +28,16 @@ public class CraftSlot : MonoBehaviour
         foreach (Item item in recipe.RecipeComponents)
         {
             TMP_Text text = Instantiate(requerimentTxt, requirementParent);
-            text.text = item.name_id;
-            // text.color = InventoryManager.instance.HasItem(item) ? Color.green : Color.red;
+            text.gameObject.SetActive(true);
+
+            // stack size from RecipeComponentsQuantity
+            int stackSize = recipe.RecipeComponentsQuantity[recipe.RecipeComponents.IndexOf(item)];
+            text.text = item.name_id + " x" + stackSize;
+            bool hasItem = InventoryManager.instance.HasItem(item.name_id);
+
+            text.faceColor = hasItem ? Color.green : Color.red;
         }
-    }
+    }   
 
     public void OnCraftButton()
     {

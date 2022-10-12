@@ -137,4 +137,16 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+    public bool HasItem(string name)
+    {
+        foreach (StackItem i in items)
+        {
+            if (i.item.name_id == name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
