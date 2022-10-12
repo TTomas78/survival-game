@@ -1104,7 +1104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &195781049
 Transform:
   m_ObjectHideFlags: 0
@@ -30987,13 +30987,19 @@ MonoBehaviour:
   hook: {fileID: 1488873091}
   hookSize: 0.2
   hookSpeed: 0.08
-  hookGravity: 0.05
+  hookGravity: 0.03
   progressBar: {fileID: 310310032}
   hookPower: 0.21
-  pregressBarDecay: 0.1
+  pregressBarDecay: 0.08
   fishingArea: {fileID: 1389246856}
   playerPosition: {fileID: 1890864359}
   fishingMiniGameUI: {fileID: 1110994940}
+  fishRewards:
+  - {fileID: 354748959631640344, guid: 3bf46407a073a8b40b6a6498b046c404, type: 3}
+  junkRewards:
+  - {fileID: 7235809436792307325, guid: c3f8672e20b0fed47a98d821009aa30b, type: 3}
+  - {fileID: 136634351957008486, guid: 1defddd8b72cbde4ba95d8339a913235, type: 3}
+  junkChance: 0.5
 --- !u!4 &2011370891
 Transform:
   m_ObjectHideFlags: 0
@@ -31026,6 +31032,8 @@ MonoBehaviour:
   rodPosition: {fileID: 195781049}
   fishingArea: {fileID: 1389246856}
   lineRenderer: {fileID: 1389246857}
+  lineSpeed: 0.003
+  curveAmount: -0.05
 --- !u!224 &2021910442 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1443665696329214221, guid: 35e7b475ffc3bb24bae81bf1f0e2e96f, type: 3}

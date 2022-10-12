@@ -42,6 +42,13 @@ public class FishingMiniGame : MonoBehaviour
     [Header("UI")]
     [SerializeField] FishingMiniGameUI fishingMiniGameUI;
 
+    [Header("Rewards")]
+    [SerializeField] Item[] fishRewards;
+    [SerializeField] Item[] junkRewards;
+    [SerializeField] float junkChance = 0.5f;
+
+
+    bool isFishing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -97,19 +104,20 @@ public class FishingMiniGame : MonoBehaviour
     }
 
     private void CheckProgress() {
-                
+
+
         // Clamp the progress
         catchPregress = Mathf.Clamp(catchPregress, 0, 1);
         // Set the progress bar's value
         progressBar.value = catchPregress;
 
-        if(catchPregress >= 1) {
+        if(catchPregress >= 1 && isFishing) {
             // We caught the fish
             Debug.Log("Caught the fish!");
+            CatchFish();
         }
-    
-        // draw a line between the fish and the hook
-        Debug.DrawLine(fish.position, hook.position, Color.red);
+
+
 
         float _distance = Mathf.Abs(fish.position.y - hook.position.y );
         float _sumEdges = fishSize + hookSize;
@@ -132,6 +140,7 @@ public class FishingMiniGame : MonoBehaviour
     }
 
     public void StartGame() {
+        isFishing = true;
          // set ui position close to the player
         Vector3 playerOffset = new Vector3(-1f, 1.5f, 0);
         fishingMiniGameUI.transform.position = playerPosition.position + playerOffset;
@@ -149,6 +158,7 @@ public class FishingMiniGame : MonoBehaviour
     }
 
     public void EndGame() {
+        isFishing = false;
         // stop drawing the rod line
         rodLine.StopDrawLine();
 
@@ -159,6 +169,29 @@ public class FishingMiniGame : MonoBehaviour
     public IEnumerator StartGameCoroutine() {
         yield return new WaitForSeconds(1f);
         StartGame();
+    }
+
+    public void CatchFish() {
+        // random change to get junk
+        if(Random.value <= junkChance) {
+            CatchJunk();
+            return; 
+        }
+        // get a random fish
+        Item _fish = fishRewards[Random.Range(0, fishRewards.Length)];
+        // add the fish to the inventory
+        InventoryManager.instance.Add(_fish);
+        // end the game
+        EndGame();
+    }
+
+    public void CatchJunk() {
+        // get a random junk
+        Item _junk = junkRewards[Random.Range(0, junkRewards.Length)];
+        // add the junk to the inventory
+        InventoryManager.instance.Add(_junk);
+        // end the game
+        EndGame();
     }
 
 }
