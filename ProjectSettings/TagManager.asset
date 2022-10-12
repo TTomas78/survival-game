@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ItemList
   - Item
+  - FishingArea
   layers:
   - Default
   - TransparentFX
