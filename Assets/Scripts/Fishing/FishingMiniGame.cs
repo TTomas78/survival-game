@@ -9,6 +9,7 @@ public class FishingMiniGame : MonoBehaviour
     [Header("Fishing Area")]
     [SerializeField] Transform topBounds;
     [SerializeField] Transform bottomBounds;
+    [SerializeField] RodLine rodLine;
     
     [Header("Fish Settings")]
     [SerializeField] Transform fish;
@@ -37,6 +38,9 @@ public class FishingMiniGame : MonoBehaviour
     [Header("Fishing area settings")]
     [SerializeField] Transform fishingArea; 
     [SerializeField] Transform playerPosition; 
+
+    [Header("UI")]
+    [SerializeField] FishingMiniGameUI fishingMiniGameUI;
 
 
     // Start is called before the first frame update
@@ -125,6 +129,36 @@ public class FishingMiniGame : MonoBehaviour
         MoveFish();
         MoveHook();
         CheckProgress();
+    }
+
+    public void StartGame() {
+         // set ui position close to the player
+        Vector3 playerOffset = new Vector3(-1f, 1.5f, 0);
+        fishingMiniGameUI.transform.position = playerPosition.position + playerOffset;
+
+        // Reset the progress bar
+        catchPregress = 0f;
+        progressBar.value = catchPregress;
+        
+        // start drawing the rod line
+        rodLine.StartDrawLine();
+
+        // enable UI
+        fishingMiniGameUI.ShowGameUI();
+
+    }
+
+    public void EndGame() {
+        // stop drawing the rod line
+        rodLine.StopDrawLine();
+
+        // disable UI
+        fishingMiniGameUI.HideGameUI();
+    }
+
+    public IEnumerator StartGameCoroutine() {
+        yield return new WaitForSeconds(1f);
+        StartGame();
     }
 
 }

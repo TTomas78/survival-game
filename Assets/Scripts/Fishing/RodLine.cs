@@ -17,10 +17,15 @@ public class RodLine : MonoBehaviour
         lineRenderer.endWidth = 0.01f;
         lineRenderer.positionCount = 2;
 
-        StartCoroutine(DrawLine());
+        // StartCoroutine(DrawLine());
 
     }
 
+    public void StartDrawLine()
+    {
+        StartCoroutine(DrawLine());
+    }
+   
     IEnumerator DrawLine() {
         // draw a line from the player to the fishing area
         while (true) {
@@ -37,6 +42,11 @@ public class RodLine : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
         }
+    }
+
+    public void StopDrawLine() {
+        // remove line
+        lineRenderer.positionCount = 0;
     }
     
     void PullLineAnimation() {

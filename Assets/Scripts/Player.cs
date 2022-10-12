@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
             }
 
             Node nextStep = path[0];
-            Debug.Log(nextStep.worldPosition);
+            // Debug.Log(nextStep.worldPosition);
             Vector2 nextPosition = new Vector2(nextStep.worldPosition.x, nextStep.worldPosition.y);
             // move the player to the next position
             transform.position = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
