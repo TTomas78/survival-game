@@ -10,6 +10,7 @@ public class ActionsManager : MonoBehaviour
     InventoryManager inventory;
     public static ActionsManager instance;
     Player player;
+    public Enums.PossibleActions CurrentAction { get; set; }
 
     void Awake()
     {
@@ -30,19 +31,38 @@ public class ActionsManager : MonoBehaviour
 
     public void DispatchAction(Resource resource)
     {
-        Tool selectedTool = SearchTool(resource.RequiredAction);
-        if (selectedTool == null)
+        if (CurrentAction == resource.RequiredAction)
         {
-            return;
+            Tool selectedTool = SearchTool(resource.RequiredAction);
+            if (selectedTool == null && resource.RequiredAction != Enums.PossibleActions.harvest)
+            {
+                Debug.Log("No tool found");
+                return;
+            }
+            if (resource.RequiredAction == Enums.PossibleActions.harvest)
+            {
+                player.StartAction();
+                resource.Interact();
+                return;
+            }
+            if (selectedTool != null)
+            {
+                if (selectedTool.Durability > 0)
+                {
+                    player.StartAction();
+                    resource.Interact();
+                    selectedTool.decreaseDurability(1);
+                    // inventory.UpdateToolDurability(selectedTool);
+                }
+                else
+                {
+                    Debug.Log("Tool is broken");
+                }
+            }
+
+            //start item corrutine
+            // StartCoroutine(SpawnRewardItems(resource.RewardPrefab, resource.transform.position, resource.SpawnRewardRadius));
         }
-
-        resource.SetHealth(resource.Health - selectedTool.Damage);
-
-
-        selectedTool.decreaseDurability(1);
-
-        //start item corrutine
-        StartCoroutine(SpawnRewardItems(resource.RewardPrefab, resource.transform.position, resource.SpawnRewardRadius));
 
     }
     //search an item to perform an specific actionm now it returns a boolean but probably should return the item in the future
@@ -84,4 +104,30 @@ public class ActionsManager : MonoBehaviour
     {
         //TODO implement this
     }
+
+
+    public void SetCurrentAction(Enums.PossibleActions action)
+    {
+        CurrentAction = action;
+    }
+
+    public void SetActionText(Enums.PossibleActions action)
+    {
+       // player.SetActionText(actionTexts[(int)action]);
+    }
+
+    public bool CheckIfActionIsPossible(Enums.PossibleActions action)
+    {
+        if (action == Enums.PossibleActions.harvest)
+        {
+            return true;
+        }
+        Tool selectedTool = SearchTool(action);
+        if (selectedTool == null)
+        {
+            return false;
+        }
+        return true;
+    }
+    
 }

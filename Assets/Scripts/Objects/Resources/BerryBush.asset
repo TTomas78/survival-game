@@ -16,4 +16,4 @@ MonoBehaviour:
   rewardAmount: 3
   rewardPrefab: {fileID: 4318314729770118911, guid: 14a1e76c9476f014889e243df15d1da0, type: 3}
   spawnRewardRadius: 3
-  requiredAction: 0
+  requiredAction: 2

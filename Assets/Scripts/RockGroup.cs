@@ -8,12 +8,6 @@ public class RockGroup : MonoBehaviour
     [SerializeField] float spawnRadius = 2;
     [SerializeField] int health = 5;
     [SerializeField] int maxHealth = 5;
-    public HealthBar healthBar;
-
-    void Start()
-    {
-        healthBar.SetMaxHealth(maxHealth);
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,13 +26,7 @@ public class RockGroup : MonoBehaviour
                     Destroy(gameObject);
             }
         }
-        if (health == maxHealth)
-        {
-            healthBar.gameObject.SetActive(false);
-        } else
-        {
-            healthBar.gameObject.SetActive(true);
-        }
+
     }
 
     IEnumerator SpawnRockRoutine()
@@ -48,7 +36,6 @@ public class RockGroup : MonoBehaviour
             Vector2 randomPosition = (Vector2)transform.position + Random.insideUnitCircle * spawnRadius;
             Instantiate(rockPrefab, randomPosition, Quaternion.identity);
             health--;
-            healthBar.SetHealth(health);
         }
     }
 }
