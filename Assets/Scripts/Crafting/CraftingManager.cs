@@ -34,6 +34,10 @@ public class CraftingManager : MonoBehaviour
         {
             craftingUI.SetActive(!craftingUI.activeSelf);
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            craftingUI.SetActive(false);
+        }
     }
 
     // onRecipeChangedCallback
