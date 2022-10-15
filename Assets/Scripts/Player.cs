@@ -53,8 +53,6 @@ public class Player : MonoBehaviour
         handleKeyboardMovement();
         handleMouseMovement();
         MovePlayer();
-
-
     }
     
     float h;
@@ -185,4 +183,10 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, pickUpDistance);
     }
     
+
+
+    public void MoveTo(Vector3 targetPosition)
+    {
+        pathfinding.FindPath(transform.position, targetPosition);
+    }
 }
