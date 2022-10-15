@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     List<Node> path;
     Pathfinding pathfinding;
     PlayerStats _playerStats;
+    [SerializeField] HealthBar actionBarUI;
 
     private int Health
     {
@@ -183,10 +184,51 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, pickUpDistance);
     }
     
-
-
     public void MoveTo(Vector3 targetPosition)
     {
         pathfinding.FindPath(transform.position, targetPosition);
+    }
+
+    // action bar
+    bool isDoingAction;
+    int actionTime;
+    int actionTimeMax;
+    public void StartAction()
+    {
+        actionBarUI.gameObject.SetActive(true);
+        isDoingAction = true;
+    }
+
+    public void StopAction()
+    {
+        actionBarUI.gameObject.SetActive(false);
+        actionTime = 0;
+        isDoingAction = false;
+    }
+
+    public bool IsDoingAction()
+    {
+        return isDoingAction;
+    }
+
+    public void UpdateActionBar(int value, int maxValue)
+    {
+        if(isDoingAction)
+        {
+            actionTimeMax = maxValue;
+            actionTime += 1;
+            actionBarUI.SetMaxHealth(maxValue); // TODO: change method name to value
+            actionBarUI.SetHealth(actionTime);
+        }
+        if(value <= 0)
+        {
+            StartCoroutine(StopActionAfterDelay(0.5f));
+        }
+    }
+
+    IEnumerator StopActionAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StopAction();
     }
 }

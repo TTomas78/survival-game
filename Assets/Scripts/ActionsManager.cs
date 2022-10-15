@@ -41,6 +41,7 @@ public class ActionsManager : MonoBehaviour
             }
             if (resource.RequiredAction == Enums.PossibleActions.harvest)
             {
+                player.StartAction();
                 resource.Interact();
                 return;
             }
@@ -48,6 +49,7 @@ public class ActionsManager : MonoBehaviour
             {
                 if (selectedTool.Durability > 0)
                 {
+                    player.StartAction();
                     resource.Interact();
                     selectedTool.decreaseDurability(1);
                     // inventory.UpdateToolDurability(selectedTool);

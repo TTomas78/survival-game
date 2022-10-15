@@ -10,37 +10,24 @@ public class Resource : MonoBehaviour
     Player _player;
     bool playerInRange;
     bool interactuable;
-    public HealthBar healthBar;
     int health;
     int maxHealth;
-
-
 
     void Awake()
     {
         actionsManager = FindObjectOfType<ActionsManager>();
         _player = FindObjectOfType<Player>();
 
-        healthBar.SetMaxHealth(resourceData.MaxHealth);
         health = resourceData.MaxHealth;
         maxHealth = resourceData.MaxHealth;
-    }
-
-    void Start() {
-        if (health == maxHealth)
-        {
-            healthBar.gameObject.SetActive(false);
-        }
     }
 
     public void SetHealth(int value)
     {
         health = value;
-        healthBar.SetHealth(health);
-        if (health != maxHealth)
-        {
-            healthBar.gameObject.SetActive(true);
-        }
+        // TODO: _player.Energy -= resourceData.EnergyCost;
+        _player.UpdateActionBar(health, maxHealth);
+
     }
 
     public int Health { get { return health; } }
