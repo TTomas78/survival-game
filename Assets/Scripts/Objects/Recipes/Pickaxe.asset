@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
   recipeComponents:
-  - {fileID: 7235809436792307325, guid: c3f8672e20b0fed47a98d821009aa30b, type: 3}
+  - {fileID: 7235809436792307325, guid: c886939ddb3d956409697007c4483615, type: 3}
   - {fileID: 136634351957008486, guid: 1defddd8b72cbde4ba95d8339a913235, type: 3}
   recipeComponentsQuantity: 0100000001000000
   resultPrefab: {fileID: 6798076064963460036, guid: bf94fe11fdc873f48bcbb10079172e87, type: 3}
