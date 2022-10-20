@@ -216,9 +216,9 @@ public class Player : MonoBehaviour
         if(isDoingAction)
         {
             actionTimeMax = maxValue;
-            actionTime += 1;
             actionBarUI.SetMaxHealth(maxValue); // TODO: change method name to value
-            actionBarUI.SetHealth(actionTime);
+            actionBarUI.SetHealth(actionTime + 1);
+            actionTime += 1;
         }
         if(value <= 0)
         {
