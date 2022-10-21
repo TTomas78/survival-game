@@ -37,6 +37,8 @@ public class BuildingGrid : MonoBehaviour
                 buildingSlot.transform.parent = transform;
                 // set building slot position
                 buildingSlot.transform.position = new Vector3(gridOrigin.x + x, gridOrigin.y + y, gridOrigin.z);
+                // set gridPosition in BuildingSlot script
+                buildingSlot.gameObject.GetComponent<BuildingSlot>().gridPosition = new int[2] { x, y };
                 // set building slot name
                 buildingSlot.name = "Building Slot " + x + ", " + y;
                 // add building slot to grid
@@ -47,13 +49,13 @@ public class BuildingGrid : MonoBehaviour
 
     public void SetBuildingSlotOccupied(int x, int y, bool occupied)
     {
-        // grid[x, y].GetComponent<BuildingSlot>().occupied = occupied;
+        grid[x, y].GetComponent<BuildingSlot>().occupied = occupied;
     }
 
     public bool IsBuildingSlotOccupied(int x, int y)
     {
-        // return grid[x, y].GetComponent<BuildingSlot>().occupied;
-        return false;
+        Debug.Log("Is building slot " + x + ", " + y + " occupied? " + grid[x, y].GetComponent<BuildingSlot>().occupied);
+        return grid[x, y].GetComponent<BuildingSlot>().occupied;
     }
 
     void OnDrawGizmos()
@@ -69,7 +71,7 @@ public class BuildingGrid : MonoBehaviour
         }
     }
 
-    void PlaceBuilding(int x, int y)
+    public void PlaceBuilding(int x, int y)
     {
         if (IsBuildingSlotOccupied(x, y))
         {
@@ -79,17 +81,12 @@ public class BuildingGrid : MonoBehaviour
         SetBuildingSlotOccupied(x, y, true);
         
         GameObject building = Instantiate(buildingPrefab);
-        building.transform.position = new Vector3(x, y, 0);
-        
-    }
-
-    void OnMouseDown()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 gridPosition = transform.position;
-        int x = Mathf.FloorToInt(mousePosition.x - gridPosition.x);
-        int y = Mathf.FloorToInt(mousePosition.y - gridPosition.y);
-        PlaceBuilding(x, y);
+        building.transform.parent = transform;
+        building.transform.position = new Vector3(
+            grid[x, y].transform.position.x,
+            grid[x, y].transform.position.y,
+            grid[x, y].transform.position.z
+            );
     }
 
 }
