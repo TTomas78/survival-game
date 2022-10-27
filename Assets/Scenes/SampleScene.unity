@@ -30814,54 +30814,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7593331294053695900, guid: d32760a3130687241b030a1f62d64ae2, type: 3}
   m_PrefabInstance: {fileID: 1984736767}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2000117407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2000117411}
-  - component: {fileID: 2000117408}
-  m_Layer: 0
-  m_Name: BuildingGrid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2000117408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000117407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fd4ffb01b0d94c4683a394c8ad21535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingSlotPrefab: {fileID: 7874435033341637057, guid: 22c6b6b9c66b1824fbe0d7636e2126ae, type: 3}
-  buildingPrefab: {fileID: 5234710449124921971, guid: 59333d96dd0dd134fbe018f9a0e07cd0, type: 3}
-  gridWidth: 25
-  gridHeight: 10
---- !u!4 &2000117411
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000117407}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.53, y: -4.52, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001517234
 GameObject:
   m_ObjectHideFlags: 0
