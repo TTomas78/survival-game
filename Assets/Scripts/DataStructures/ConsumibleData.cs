@@ -11,7 +11,9 @@ public class ConsumibleData : ScriptableObject
     [SerializeField] int thirstRestore;
     [SerializeField] int healthRestore;
 
+
     public int HungerRestore { get => hungerRestore; }
     public int ThirstRestore { get => thirstRestore; }
     public int HealthRestore { get => healthRestore; }
+
 }

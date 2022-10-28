@@ -13,3 +13,14 @@ public class Enums : MonoBehaviour
         fish
     }
 }
+
+public class Dicts : MonoBehaviour
+{
+    public IDictionary Fuels = new Dictionary<string, int>(){
+        {"Wood", 2},
+        {"Stick", 1}
+    };
+}
+
+    
+

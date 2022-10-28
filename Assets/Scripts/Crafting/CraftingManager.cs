@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -101,7 +102,17 @@ public class CraftingManager : MonoBehaviour
                     inventory.SubtractItemByName(item.name_id, quantity);
                 }
             }
-            inventory.Add(recipe.ResultPrefab);
+
+            // Here if there's a building it must be placed in the world instead of posicionated in the inventory.
+            if (recipe.ResultPrefab is Building)
+            {
+                Item building = Instantiate(recipe.ResultPrefab);
+                building.transform.position = new Vector2(1f,1f);
+            }
+            else
+            {
+                inventory.Add(recipe.ResultPrefab); 
+            }
         }
         if (!CraftedRecipes.Contains(recipe))
         {
@@ -109,6 +120,7 @@ public class CraftingManager : MonoBehaviour
             UnlockRecipes();
         }
     }
+
 
     public bool IsAbleToCraft(RecipeData recipe)
     {

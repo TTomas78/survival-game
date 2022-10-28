@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 914281101946953707}
   - component: {fileID: 354748959631640344}
   - component: {fileID: 1609044459220751497}
+  - component: {fileID: -4167136724380239808}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Item
@@ -98,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32baf6a1592979247944e2bd44359a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceGater: 1
   pickable: 1
   name_id: Fish
   positionInInventory: -1
@@ -139,3 +139,20 @@ PolygonCollider2D:
       - {x: 0.375, y: -0.03125}
       - {x: 0.46875, y: 0.125}
       - {x: 0.46875, y: 0.3125}
+--- !u!114 &-4167136724380239808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394869156343736891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc2927f788b1b543a5b074967dc95c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickable: 1
+  name_id: Fish
+  positionInInventory: -1
+  actions: 
+  food: {fileID: 11400000, guid: f9bf3e512eb6646499cf3efcb3814940, type: 2}

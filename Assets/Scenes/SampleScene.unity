@@ -15218,6 +15218,7 @@ MonoBehaviour:
   unlockedRecipes:
   - {fileID: 11400000, guid: 07a915060bcc20b4c90a3aa8c72c5982, type: 2}
   - {fileID: 11400000, guid: 686a47463cffac247b313f1df4da10be, type: 2}
+  - {fileID: 11400000, guid: e73de50eb5f75b94ba0167b81c03e025, type: 2}
   lockedRecipes: []
   CraftedRecipes: []
   craftingUI: {fileID: 183466397}
@@ -21105,11 +21106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9167056976805385574, guid: 14a1e76c9476f014889e243df15d1da0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.67
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9167056976805385574, guid: 14a1e76c9476f014889e243df15d1da0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.04
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9167056976805385574, guid: 14a1e76c9476f014889e243df15d1da0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31805,7 +31806,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fish
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 354748959631640344, guid: 3bf46407a073a8b40b6a6498b046c404, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3bf46407a073a8b40b6a6498b046c404, type: 3}
 --- !u!1001 &3930951385041399006
 PrefabInstance:

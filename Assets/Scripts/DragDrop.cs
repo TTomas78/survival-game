@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -46,7 +47,19 @@ public class DragDrop :
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // Debug.Log("End Drag");
+        Debug.Log("End Drag");
+        Vector2 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        GameObject pointedObject = Physics2D.OverlapPoint(point).gameObject;
+
+        //get the item based on the item in inventory
+        InventorySlot initialSlot = eventData.pointerDrag.GetComponent<InventorySlot>();
+        Item item = initialSlot.stackItem.item;
+
+        //We should check if the selecte object implements the interface
+        if (pointedObject.GetComponent<IDrageable>().OnDropObject(item))
+        {
+            InventoryManager.instance.SubstractItem(initialSlot.stackItem, 1);
+        }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         rectTransformImage.anchoredPosition = Vector2.zero;

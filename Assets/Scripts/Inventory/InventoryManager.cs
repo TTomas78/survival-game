@@ -138,6 +138,20 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void SubstractItem(StackItem stackItem, int amount)
+    {
+        if (!(stackItem.quantity < amount))
+        {
+            stackItem.quantity -= amount;
+            if (stackItem.quantity <= 0)
+            {
+                items.Remove(stackItem);
+            }
+            if (onItemChangedCallback != null)
+                onItemChangedCallback.Invoke();
+        }
+    }
+
     public bool HasItem(string name)
     {
         foreach (StackItem i in items)
