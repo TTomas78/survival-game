@@ -47,6 +47,9 @@ TagManager:
   - name: Water
     uniqueID: 3142987177
     locked: 0
+  - name: Sand
+    uniqueID: 1714941803
+    locked: 0
   - name: Ground
     uniqueID: 2343933737
     locked: 0
