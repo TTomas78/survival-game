@@ -13,6 +13,9 @@ public class Campfire : Building, IDrageable
 
     private UncookedFood slot;
 
+    private Animator animator;
+
+    [SerializeField] HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -20,20 +23,24 @@ public class Campfire : Building, IDrageable
         remainingFuel = data.RemainingFuel;
         InvokeRepeating("Use", 0, data.BurningRate);
         slot = null;
+        animator = GetComponent<Animator>();
     }
 
+    void FixedUpdate()
+    {
+        animator.SetInteger("RemainingFuel", remainingFuel);
+    }
     // Update is called once per frame
 
     private void Use()
     {
-        Debug.Log("burning");
-        Debug.Log(remainingFuel);
         if (remainingFuel > 0)
         {
             remainingFuel--;
             if (slot is not null)
             {
                 slot.DecreaseCookingTime(1);
+                healthBar.SetHealth(healthBar.GetHealth()-1);
 
                 if (slot.CookingTime <= 0)
                 {
@@ -43,6 +50,7 @@ public class Campfire : Building, IDrageable
                         0);
                     Instantiate(slot.Food, transform.position + randomPosition, Quaternion.identity);
                     slot = null;
+                    healthBar.gameObject.SetActive(false);
                 }
             }
         }
@@ -53,6 +61,9 @@ public class Campfire : Building, IDrageable
     public void AddFood(UncookedFood food)
     {
         slot = food;
+        healthBar.SetMaxHealth(food.CookingTime);
+        healthBar.SetHealth(food.CookingTime);
+        healthBar.gameObject.SetActive(true);
     }
 
     public void AddFuel(Item fuel)
@@ -65,7 +76,6 @@ public class Campfire : Building, IDrageable
 
     public bool OnDropObject(Item droppedItem)
     {
-        Debug.Log(droppedItem);
         if (slot == null && droppedItem is UncookedFood )
         {
             UncookedFood food = (UncookedFood)droppedItem;

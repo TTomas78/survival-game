@@ -11,8 +11,8 @@ public class CampfireData : ScriptableObject
     [SerializeField] float burningRate;
 
     Dictionary<string, int> resourceFuel = new Dictionary<string, int>(){
-        {"Wood", 2},
-        {"Stick", 1}
+        {"Wood", 5},
+        {"Stick", 2}
         };
 
 
