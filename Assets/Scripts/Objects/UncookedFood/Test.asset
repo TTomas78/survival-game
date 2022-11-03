@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634adb97dada1264992d431a258e624d, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  cookingTime: 2
+  cookingTime: 5
   cookingResultPrefab: {fileID: 3746035112932499790, guid: be5f02edbca8e16469902616bf5f6953, type: 3}
